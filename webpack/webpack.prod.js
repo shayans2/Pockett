@@ -12,7 +12,21 @@ module.exports = {
     }),
   ],
   output: {
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
+    clean: true,
+  },
+  optimization: {
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
 };
