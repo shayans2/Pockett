@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { Routes } from './routes';
+
+import { GlobalStyles } from './theme/globalStyles';
 import { themeConfig } from '@theme';
 
 const queryClient = new QueryClient();
@@ -11,6 +13,7 @@ const queryClient = new QueryClient();
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={themeConfig}>
+      <GlobalStyles />
       <Routes />
     </ThemeProvider>
   </QueryClientProvider>,
