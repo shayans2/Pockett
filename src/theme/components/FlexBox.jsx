@@ -8,6 +8,7 @@ export const FlexBox = styled.div`
   flex-wrap: ${({ wrap }) => wrap};
   flex-direction: ${({ direction }) => direction};
   flex: ${({ flex }) => flex};
+  gap: ${({ gap }) => gap};
 `;
 
 FlexBox.defaultProps = {
