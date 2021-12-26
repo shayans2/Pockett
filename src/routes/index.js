@@ -5,6 +5,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { App } from '@containers/App';
 import { Private } from '@containers/Private';
 import { Login } from '@containers/Login';
+import { Register } from '@containers/Register';
 
 export const Routes = () => {
   return (
@@ -12,6 +13,7 @@ export const Routes = () => {
       <Switch>
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         <Route
           path="private"

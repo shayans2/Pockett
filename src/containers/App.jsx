@@ -74,7 +74,7 @@ export const App = () => {
           <Link to="/login">
             <HomeButton text="Login" />
           </Link>
-          <Link to="/signup">
+          <Link to="/register">
             <HomeButton text="Register" />
           </Link>
         </BottomFixed>

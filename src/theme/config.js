@@ -1,5 +1,6 @@
 export const themeConfig = {
   colors: {
+    primary: '#e76f51',
     white: '#FFF',
     black: '#000',
   },
