@@ -12,8 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.5",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "@babel/runtime": "^7.16.5",
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "dotenv-webpack": "^7.0.3",
@@ -27,6 +29,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "joi": "^17.5.0",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
