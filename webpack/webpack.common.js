@@ -43,5 +43,6 @@ module.exports = {
     hot: true,
     compress: true,
     port: 9000,
+    allowedHosts: 'all',
   },
 };
