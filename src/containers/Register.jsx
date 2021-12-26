@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useForm } from '@hooks/useForm';
+import { ChevronLeft } from '@components/Icons/ChevronLeft';
 
-import { Button, Input, Text, Space } from '@theme';
+import { Button, Input, Text, Space, FlexBox } from '@theme';
 
 const Container = styled.div`
   background-color: #14242a;
@@ -21,6 +23,7 @@ const BottomFixed = styled.div`
 `;
 
 export const Register = () => {
+  const navigate = useNavigate();
   const form = useForm(
     {
       initialValues: {
@@ -38,6 +41,13 @@ export const Register = () => {
   return (
     <Container>
       <TextContainer>
+        <FlexBox
+          alignItems="center"
+          justify="flex-start"
+          onClick={() => navigate(-1)}
+        >
+          <ChevronLeft />
+        </FlexBox>
         <Text color="white" size="3xl" margin="15px 0px" as="h1">
           Welcome To{' '}
           <Text color="primary" size="3xl" margin="15px 0px" as="span">
