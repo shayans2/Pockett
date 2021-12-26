@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { useForm } from '@hooks/useForm';
 
-import { FlexBox, Button, Input, Text, Space } from '@theme';
+import { Button, Input, Text, Space } from '@theme';
 
 const Container = styled.div`
   background-color: #14242a;
@@ -40,7 +40,7 @@ export const Login = () => {
   return (
     <Container>
       <TextContainer>
-        <Text color="white" size="4xl" as="h1" margin="15px 0px">
+        <Text color="white" size="4xl" margin="15px 0px" as="h1">
           Let's sign you in.
         </Text>
         <Text color="white" weight="regular" as="h2">
