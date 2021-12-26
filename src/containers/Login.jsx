@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 const TextContainer = styled.div`
-  padding-top: 8vh;
+  padding-top: 4vh;
   margin-bottom: 12vh;
 `;
 
@@ -40,7 +40,7 @@ export const Login = () => {
   return (
     <Container>
       <TextContainer>
-        <Text color="white" size="4xl" margin="15px 0px" as="h1">
+        <Text color="white" size="3xl" margin="15px 0px" as="h1">
           Let's sign you in.
         </Text>
         <Text color="white" weight="regular" as="h2">
