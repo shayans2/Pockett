@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -9,6 +10,9 @@ module.exports = {
     new CleanWebpackPlugin(),
     new Dotenv({
       path: path.resolve(__dirname, '..', './.env.production'),
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'public/_redirects', to: '.' }],
     }),
   ],
   output: {
