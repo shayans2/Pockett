@@ -5,7 +5,6 @@ import { Text, FlexBox, Button } from '@theme';
 
 const Container = styled(FlexBox)`
   background-color: #e76f51;
-  min-height: 100vh;
   height: 100%;
   overflow: hidden;
   transform: translateZ(0);

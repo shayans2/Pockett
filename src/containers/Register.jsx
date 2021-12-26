@@ -6,7 +6,6 @@ import { Button, Input, Text, Space } from '@theme';
 
 const Container = styled.div`
   background-color: #14242a;
-  min-height: 100vh;
   height: 100%;
   padding: 0px 16px;
 `;
