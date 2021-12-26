@@ -2,7 +2,6 @@ export const themeConfig = {
   colors: {
     white: '#FFF',
     black: '#000',
-    red: '#555',
   },
   fontSize: {
     '4xl': '38px',
