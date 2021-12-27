@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Text, FlexBox, Button } from '@theme';
+import 'animate.css';
 
 const Container = styled(FlexBox)`
   background-color: #e76f51;
@@ -49,7 +50,7 @@ const BottomFixed = styled(FlexBox)`
   z-index: 2;
 `;
 
-export const App = () => {
+const App = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = React.useState(false);
 
@@ -78,3 +79,5 @@ export const App = () => {
     </Container>
   );
 };
+
+export default App;
