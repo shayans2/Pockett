@@ -21,7 +21,7 @@ const BottomFixed = styled.div`
   bottom: 16px;
 `;
 
-export const Login = () => {
+const Login = () => {
   const navigate = useNavigate();
   const form = useForm(
     {
@@ -77,7 +77,12 @@ export const Login = () => {
         <BottomFixed>
           <Text color="white" align="center">
             Don't have an account?{' '}
-            <Text color="white" weight="bold" as="span">
+            <Text
+              color="white"
+              weight="bold"
+              onClick={() => navigate('/private')}
+              as="span"
+            >
               Register
             </Text>
           </Text>
@@ -88,3 +93,5 @@ export const Login = () => {
     </Container>
   );
 };
+
+export default Login;

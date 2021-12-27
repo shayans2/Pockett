@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Text, FlexBox, Button } from '@theme';
 
 const Container = styled(FlexBox)`
@@ -50,6 +50,7 @@ const BottomFixed = styled(FlexBox)`
 `;
 
 export const App = () => {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
@@ -70,12 +71,8 @@ export const App = () => {
 
       {isVisible ? (
         <BottomFixed className="animate__animated animate__fadeIn" gap="5px">
-          <Link to="/login">
-            <HomeButton text="Login" />
-          </Link>
-          <Link to="/register">
-            <HomeButton text="Register" />
-          </Link>
+          <HomeButton text="Login" onClick={() => navigate('/login')} />
+          <HomeButton text="Register" onClick={() => navigate('/register')} />
         </BottomFixed>
       ) : null}
     </Container>

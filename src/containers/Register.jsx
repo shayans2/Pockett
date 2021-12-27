@@ -22,7 +22,7 @@ const BottomFixed = styled.div`
   bottom: 16px;
 `;
 
-export const Register = () => {
+const Register = () => {
   const navigate = useNavigate();
   const form = useForm(
     {
@@ -94,3 +94,5 @@ export const Register = () => {
     </Container>
   );
 };
+
+export default Register;
