@@ -1,29 +1,33 @@
 import React from 'react';
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
-import { PrivateRoute } from './PrivateRoute';
+// import { PrivateRoute } from '@components/common/PrivateRoute';
+import { Loading } from '@components/common/Loading';
 
-import { App } from '@containers/App';
-import { Private } from '@containers/Private';
-import { Login } from '@containers/Login';
-import { Register } from '@containers/Register';
+// import { Private } from '@containers/Private';
+
+const App = React.lazy(() => import('@containers/App'));
+const Login = React.lazy(() => import('@containers/Login'));
+const Register = React.lazy(() => import('@containers/Register'));
 
 export const Routes = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" element={<App />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+    <React.Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" element={<App />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route
-          path="private"
-          element={
-            <PrivateRoute>
-              <Private />
-            </PrivateRoute>
-          }
-        />
-      </Switch>
-    </BrowserRouter>
+          {/* <Route
+            path="private"
+            element={
+              <PrivateRoute>
+                <Private />
+              </PrivateRoute>
+            }
+          /> */}
+        </Switch>
+      </BrowserRouter>
+    </React.Suspense>
   );
 };

@@ -16,18 +16,24 @@ module.exports = {
     }),
   ],
   output: {
-    filename: '[name].[contenthash].js',
+    filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, '..', './build'),
     clean: true,
   },
   optimization: {
-    moduleIds: 'deterministic',
-    runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: {
-        vendor: {
+        commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
+          // cacheGroupKey here is `commons` as the key of the cacheGroup
+          name(module, chunks, cacheGroupKey) {
+            const moduleFileName = module
+              .identifier()
+              .split('/')
+              .reduceRight((item) => item);
+            const allChunksNames = chunks.map((item) => item.name).join('~');
+            return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
+          },
           chunks: 'all',
         },
       },
