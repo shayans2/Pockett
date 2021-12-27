@@ -21,3 +21,9 @@ ReactDOM.render(
 );
 
 module.hot.accept(); // Hot Module Replacement
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/pwabuilder-sw.js');
+  });
+}
