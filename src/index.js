@@ -19,10 +19,15 @@ ReactDOM.render(
   document.getElementById('app'),
 );
 
-module.hot.accept(); // Hot Module Replacement
-
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/pwabuilder-sw.js');
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('../service-worker.js')
+      .then((registration) => {
+        console.log('SW registered: ', registration);
+      })
+      .catch((registrationError) => {
+        console.log('SW registration failed: ', registrationError);
+      });
   });
 }
