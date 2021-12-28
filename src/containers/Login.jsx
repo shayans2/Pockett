@@ -10,7 +10,7 @@ import { ChevronLeft } from '@components/Icons/ChevronLeft';
 import { Button, Input, Text, Space, FlexBox } from '@theme';
 
 const Container = styled.div`
-  background-color: #14242a;
+  background-color: ${({ theme }) => theme.colors.primaryBG};
   height: 100%;
   padding: 0px 16px;
 `;
@@ -98,7 +98,7 @@ const Login = () => {
             </Text>
           </Text>
           <Space size="lg" />
-          <Button type="submit" large text="Sign In" />
+          <Button large type="submit" text="Sign In" isLoading />
         </BottomFixed>
       </form>
       {isToastVisible ? <Toast /> : null}

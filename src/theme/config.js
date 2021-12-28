@@ -1,9 +1,17 @@
 export const themeConfig = {
   colors: {
-    primary: '#e76f51',
-    white: '#FFF',
+    white: '#fff',
     black: '#000',
+
+    primary: '#e76f51',
+    lightGreen: '#9bbc90',
+    lightGrey: '#a8b2b7',
+    lightGreyTransparent: 'rgba(168, 178, 183, 0.05)',
+    darkBlue: '#264653',
+
+    primaryBG: '#14242a',
   },
+
   fontSize: {
     '4xl': '38px',
     '3xl': '32px',
@@ -14,6 +22,7 @@ export const themeConfig = {
     body: '18px',
     regular: '16px',
   },
+
   fontWeight: {
     black: 900,
     bold: 700,

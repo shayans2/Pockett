@@ -14,7 +14,3 @@ Text.defaultProps = {
   margin: 0,
   padding: 0,
 };
-
-// export const Text = ({ children, ...props }) => {
-//   return <StyledText {...props}>{children}</StyledText>;
-// };

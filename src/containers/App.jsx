@@ -1,24 +1,20 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { Text, FlexBox, Button } from '@theme';
-import 'animate.css';
+import {
+  Text,
+  FlexBox,
+  Button,
+  bounceInDown,
+  growFromCenter,
+  fadeIn,
+} from '@theme';
 
 const Container = styled(FlexBox)`
-  background-color: #e76f51;
+  background-color: ${({ theme }) => theme.colors.primary};
   height: 100%;
   overflow: hidden;
-  transform: translateZ(0);
-`;
-
-const grow = keyframes`
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(10);
-  }
+  transform: translateZ(0); // To prevent overflow on growFromCenter animation
 `;
 
 const MagicDot = styled.div`
@@ -27,27 +23,34 @@ const MagicDot = styled.div`
   height: 100px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.white};
-  animation: ${grow} 1s forwards ease-in;
+  animation: ${growFromCenter} 1s forwards ease-in;
   animation-delay: 0.3s;
   z-index: 1;
   overflow: hidden;
 `;
 
 const HomeButton = styled(Button)`
-  background-color: #264653;
+  background-color: ${({ theme }) => theme.colors.darkBlue};
   width: 160px;
 `;
 
 const Logo = styled(Text)`
   font-size: 80px;
-  color: #e76f51;
+  color: ${({ theme }) => theme.colors.primary};
   z-index: 2;
+  animation-name: ${bounceInDown};
+  animation-duration: 1s;
+  animation-fill-mode: both;
 `;
 
 const BottomFixed = styled(FlexBox)`
   position: fixed;
   bottom: 24px;
   z-index: 2;
+  animation-name: ${fadeIn};
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-delay: 0.7s;
 `;
 
 const App = () => {
