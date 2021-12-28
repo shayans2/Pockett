@@ -1,7 +1,9 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { authService } from '@api';
 
 export const PrivateRoute = ({ children }) => {
-  // Private condition * Needs to be changed *
-  return true ? children : <Navigate to="/" />;
+  const currentUser = authService.getCurrentUser();
+
+  return currentUser ? children : <Navigate to="/login" />;
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@hooks/useForm';
 
@@ -8,6 +9,7 @@ import { Toast } from '@components/common/Toast';
 
 import { ChevronLeft } from '@components/Icons/ChevronLeft';
 import { Button, Input, Text, Space, FlexBox } from '@theme';
+import { Request, authService } from '@api';
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.primaryBG};
@@ -31,6 +33,16 @@ const BottomFixed = styled.div`
 `;
 
 const Login = () => {
+  // const query = useQuery('posts', () => Request('posts'));
+
+  React.useEffect(() => {
+    authService.logout();
+    // authService.loginWithJwt(
+    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    // );
+  }, []);
+  // console.log(authService.getCurrentUser());
+
   const { isToastVisible, showToast } = useToast();
   const navigate = useNavigate();
   const form = useForm(

@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
-// import { PrivateRoute } from '@components/common/PrivateRoute';
+import { PrivateRoute } from '@components/common/PrivateRoute';
 import { RouteLoading } from '@components/common/RouteLoading';
 
-// import { Private } from '@containers/Private';
+import { Private } from '@containers/Private';
 
 const App = React.lazy(() => import('@containers/App'));
 const Login = React.lazy(() => import('@containers/Login'));
@@ -18,14 +18,14 @@ export const Routes = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* <Route
+          <Route
             path="private"
             element={
               <PrivateRoute>
                 <Private />
               </PrivateRoute>
             }
-          /> */}
+          />
         </Switch>
       </BrowserRouter>
     </React.Suspense>

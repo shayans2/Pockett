@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { authService } from '@api';
+
 import {
   Text,
   FlexBox,
@@ -56,6 +58,12 @@ const BottomFixed = styled(FlexBox)`
 const App = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    if (authService.getCurrentUser()) {
+      navigate('/private');
+    }
+  }, []);
 
   React.useEffect(() => {
     setTimeout(() => {
