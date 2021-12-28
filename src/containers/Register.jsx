@@ -48,9 +48,9 @@ const Register = () => {
         >
           <ChevronLeft />
         </FlexBox>
-        <Text color="white" size="3xl" margin="15px 0px" as="h1">
+        <Text color="white" size="2xl" margin="15px 0px" as="h1">
           Welcome To{' '}
-          <Text color="primary" size="3xl" margin="15px 0px" as="span">
+          <Text color="primary" as="span">
             Pockett!
           </Text>
         </Text>
