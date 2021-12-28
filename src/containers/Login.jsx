@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from '@hooks/useForm';
 
 import { useToast } from '@contexts/Toast';
@@ -84,7 +84,6 @@ const Login = () => {
           value={form.values.password}
           large
         />
-
         <BottomFixed>
           <Text color="white" align="center">
             Don't have an account?{' '}
@@ -98,7 +97,7 @@ const Login = () => {
             </Text>
           </Text>
           <Space size="lg" />
-          <Button large type="submit" text="Sign In" isLoading />
+          <Button large type="submit" text="Sign In" />
         </BottomFixed>
       </form>
       {isToastVisible ? <Toast /> : null}

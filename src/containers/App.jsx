@@ -67,14 +67,10 @@ const App = () => {
     <Container alignItems="center" justify="center">
       <MagicDot></MagicDot>
 
-      {isVisible ? (
-        <Logo className="animate__animated animate__bounceInDown" weight="bold">
-          Pockett
-        </Logo>
-      ) : null}
+      {isVisible ? <Logo weight="bold">Pockett</Logo> : null}
 
       {isVisible ? (
-        <BottomFixed className="animate__animated animate__fadeIn" gap="10px">
+        <BottomFixed gap="10px">
           <HomeButton text="Login" onClick={() => navigate('/login')} />
           <HomeButton text="Register" onClick={() => navigate('/register')} />
         </BottomFixed>
