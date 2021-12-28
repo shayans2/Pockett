@@ -2,14 +2,13 @@ export const themeConfig = {
   colors: {
     white: '#fff',
     black: '#050505',
-
     primary: '#e76f51',
     lightGreen: '#9bbc90',
     lightGrey: '#a8b2b7',
     lightGreyTransparent: 'rgba(168, 178, 183, 0.05)',
     darkBlue: '#264653',
-
     primaryBG: '#14242a',
+    lightPrimary: '#ED937C',
   },
 
   fontSize: {

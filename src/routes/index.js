@@ -8,6 +8,7 @@ import { Private } from '@containers/Private';
 const App = React.lazy(() => import('@containers/App'));
 const Login = React.lazy(() => import('@containers/Login'));
 const Register = React.lazy(() => import('@containers/Register'));
+const Wallet = React.lazy(() => import('@containers/Wallet'));
 
 export const Routes = () => {
   return (
@@ -17,6 +18,7 @@ export const Routes = () => {
           <Route path="/" element={<App />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/wallet" element={<Wallet />} />
 
           <Route
             path="private"
