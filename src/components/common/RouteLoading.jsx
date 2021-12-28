@@ -8,7 +8,7 @@ const Container = styled(FlexBox)`
   padding: 0px 16px;
 `;
 
-export const Loading = () => {
+export const RouteLoading = () => {
   return (
     <Container justify="center" alignItems="center">
       <Text color="white" size="4xl" as="h2">

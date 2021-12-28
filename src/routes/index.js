@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes as Switch, Route } from 'react-router-dom';
 // import { PrivateRoute } from '@components/common/PrivateRoute';
-import { Loading } from '@components/common/Loading';
+import { RouteLoading } from '@components/common/RouteLoading';
 
 // import { Private } from '@containers/Private';
 
@@ -11,7 +11,7 @@ const Register = React.lazy(() => import('@containers/Register'));
 
 export const Routes = () => {
   return (
-    <React.Suspense fallback={<Loading />}>
+    <React.Suspense fallback={<RouteLoading />}>
       <BrowserRouter>
         <Switch>
           <Route path="/" element={<App />} />
