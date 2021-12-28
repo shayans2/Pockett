@@ -5,6 +5,7 @@
       "@containers/*": ["./src/containers/*"],
       "@components/*": ["./src/components/*"],
       "@hooks/*": ["./src/hooks/*"],
+      "@contexts/*": ["./src/contexts/*"],
       "@api": ["src/api"],
       "@theme": ["./src/theme"],
       "@utils/*": ["./src/utils/*"],

@@ -2,6 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useForm } from '@hooks/useForm';
+
+import { useToast } from '@contexts/Toast';
+import { Toast } from '@components/common/Toast';
+
 import { ChevronLeft } from '@components/Icons/ChevronLeft';
 import { Button, Input, Text, Space, FlexBox } from '@theme';
 
@@ -22,6 +26,7 @@ const BottomFixed = styled.div`
 `;
 
 const Login = () => {
+  const { isToastVisible, showToast } = useToast();
   const navigate = useNavigate();
   const form = useForm(
     {
@@ -33,6 +38,7 @@ const Login = () => {
     {
       onSubmit: ({ values }) => {
         console.log(values, 'Values!');
+        showToast();
       },
     },
   );
@@ -90,6 +96,7 @@ const Login = () => {
           <Button type="submit" large text="Sign In" />
         </BottomFixed>
       </form>
+      {isToastVisible ? <Toast /> : null}
     </Container>
   );
 };
