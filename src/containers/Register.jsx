@@ -18,8 +18,13 @@ const TextContainer = styled.div`
 `;
 
 const BottomFixed = styled.div`
-  position: fixed;
-  bottom: 16px;
+  position: absolute;
+  top: auto;
+  bottom: 0%;
+  height: auto;
+  padding: 0px 16px 24px;
+  left: 0;
+  right: 0;
 `;
 
 const Register = () => {

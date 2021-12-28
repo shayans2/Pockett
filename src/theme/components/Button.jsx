@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
+  display: block;
   padding: 20px 30px;
-  width: ${({ large }) => (large ? '90vw' : 'fit-content')};
+  width: ${({ large }) => (large ? '100%' : 'fit-content')};
   background-color: #9bbc90;
   border: none;
   border-radius: 18px;

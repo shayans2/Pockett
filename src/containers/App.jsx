@@ -46,7 +46,7 @@ const Logo = styled(Text)`
 
 const BottomFixed = styled(FlexBox)`
   position: fixed;
-  bottom: 16px;
+  bottom: 24px;
   z-index: 2;
 `;
 
@@ -71,7 +71,7 @@ const App = () => {
       ) : null}
 
       {isVisible ? (
-        <BottomFixed className="animate__animated animate__fadeIn" gap="5px">
+        <BottomFixed className="animate__animated animate__fadeIn" gap="10px">
           <HomeButton text="Login" onClick={() => navigate('/login')} />
           <HomeButton text="Register" onClick={() => navigate('/register')} />
         </BottomFixed>
