@@ -15,7 +15,7 @@ const ToastContainer = styled(FlexBox)`
   padding: 12px 16px 12px 12px;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 10px;
-  box-shadow: 5px 10px 30px #000;
+  box-shadow: ${({ theme }) => theme.shadow};
 `;
 
 export const Toast = () => {

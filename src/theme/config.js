@@ -1,7 +1,7 @@
 export const themeConfig = {
   colors: {
     white: '#fff',
-    black: '#000',
+    black: '#050505',
 
     primary: '#e76f51',
     lightGreen: '#9bbc90',
@@ -31,4 +31,6 @@ export const themeConfig = {
     light: 300,
     thin: 100,
   },
+
+  shadow: '0px 5px 10px #050505',
 };
