@@ -8,6 +8,7 @@ const AddContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 16px;
   overflow: scroll;
 `;
@@ -18,43 +19,37 @@ const InputDes = styled(Input)`
 `;
 const InputSpend = styled(Input)`
   color: '#a8b2b7';
-  border: 1px solid #e76f51;
 `;
 
 const InputDesSpend = styled(Input)`
   height: 100px;
   color: '#a8b2b7';
-  border: 1px solid #e76f51;
 `;
 
 const EarnButton = styled(Button)`
   background-color: #2a9d8f;
-  width: 160px;
+  width: 150px;
   height: 50px;
   color: white;
 `;
 const SpendButton = styled(Button)`
   background-color: #e76f51;
-  width: 160px;
+  width: 150px;
   height: 50px;
   color: white;
 `;
 
 const BottomFixed = styled.div`
-  position: absolute;
-  top: auto;
-  bottom: 0%;
   height: auto;
   padding: 0px 16px 24px;
-  left: 0;
-  right: 0;
+  width: 100%;
 `;
 const Add = () => {
   const [type, setType] = useState('earn');
   return (
     <AddContainer>
       <Space size="md" />
-      <FlexBox alignItems="center" justify="space-around" gap="16px">
+      <FlexBox alignItems="center" justify="space-between" gap="12px">
         <EarnButton
           text="Earn"
           onClick={() => {
@@ -98,7 +93,7 @@ const Add = () => {
           {' '}
           <InputSpend
             name="amount"
-            placeholder="Amount of your money you Spend"
+            placeholder="Amount of your money you spend"
             type="number"
             // onChange={}
             // value={}
