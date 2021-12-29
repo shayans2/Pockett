@@ -31,11 +31,10 @@ const Wallet = () => {
   return (
     <Container>
       <Space size="lg" />
-
-      <Header action={selectWalletModal.open}>Wallet</Header>
-
+      <Header action={selectWalletModal.open} hasHamburger>
+        Wallet
+      </Header>
       <Space size="32px" />
-
       <FlexBox alignItems="center">
         <Text color="white" weight="bold" size="body">
           Transactions

@@ -13,7 +13,7 @@ export { Modal } from './components/Modal';
 export { Add } from './icons/Add';
 export { ChevronLeft } from './icons/ChevronLeft';
 export { CircleError } from './icons/CircleError';
-export { Hamburger } from './icons/Hamburger';
+export { HambugerIcon } from './icons/Hamburger';
 
 // Animations
 export { bounceInDown } from './animations/bounceInDown';

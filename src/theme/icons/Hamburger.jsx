@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Hamburger = ({ color = '#fff', size = 24 }) => {
+export const HambugerIcon = ({ color = '#fff', size = 24 }) => {
   return (
     <svg
       version="1.1"
