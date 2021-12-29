@@ -10,8 +10,8 @@ const Backdrop = styled.div`
   left: 0;
   right: 0;
   z-index: 4;
-  background-color: rgba(1, 1, 1, 0.3);
-  transition: opacity 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
 `;
 
 const ModalContainer = styled.div`

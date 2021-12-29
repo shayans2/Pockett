@@ -16,15 +16,18 @@ const Container = styled.div`
 `;
 
 const Wallet = () => {
-  const testModal = useModal('test');
-  const test2Modal = useModal('test2');
+  const TEST_MODAL_NAME = 'TEST_MODAL';
+  const TEST2_MODAL_NAME = 'TEST2_MODAL';
+
+  const testModal = useModal(TEST_MODAL_NAME);
+  const test2Modal = useModal(TEST2_MODAL_NAME);
 
   return (
     <Container>
       <FlexBox alignItems="center" justify="space-between">
         <Add />
         <Text
-          onClick={() => testModal.openModal()}
+          onClick={testModal.open}
           color="primary"
           size="xl"
           as="h1"
@@ -34,7 +37,7 @@ const Wallet = () => {
         </Text>
         <Humburger />
       </FlexBox>
-      <div onClick={() => test2Modal.openModal()}>Second Modal</div>
+      <div onClick={test2Modal.open}>Second Modal</div>
       <Space size="lg" />
       <FlexBox alignItems="center">
         <Text color="lightPrimary" font-weight="bold">
@@ -47,11 +50,11 @@ const Wallet = () => {
       <Space size="lg" />
       <TransactionsItem />
 
-      <Modal onClose={() => test2Modal.closeModal()} isOpen={test2Modal.isOpen}>
+      <Modal onClose={test2Modal.close} isOpen={test2Modal.isOpen}>
         <div style={{ padding: ' 50px' }}>TEST 2</div>
       </Modal>
 
-      <Modal onClose={() => testModal.closeModal()} isOpen={testModal.isOpen}>
+      <Modal onClose={testModal.close} isOpen={testModal.isOpen}>
         <div>TEST</div>
       </Modal>
     </Container>

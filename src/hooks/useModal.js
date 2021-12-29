@@ -5,17 +5,17 @@ export const useModal = (name) => {
     [name]: false,
   });
 
-  const openModal = () => {
+  const open = () => {
     setIsModalOpen((prevState) => ({ ...prevState, [name]: true }));
   };
 
-  const closeModal = () => {
+  const close = () => {
     setIsModalOpen((prevState) => ({ ...prevState, [name]: false }));
   };
 
   return {
-    openModal,
-    closeModal,
+    open,
+    close,
     isOpen: isModalOpen[name],
   };
 };
