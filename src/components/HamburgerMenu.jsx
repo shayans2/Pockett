@@ -9,10 +9,10 @@ const StyledMenu = styled.nav`
   height: 100%;
   width: 100vw;
   text-align: left;
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
-  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
+  right: 0;
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.3s ease-in-out;
 
   div {
@@ -22,14 +22,17 @@ const StyledMenu = styled.nav`
   }
   a {
     margin: 0 24px;
-    padding: 16px 0;
+    padding: 28px 0;
     font-weight: bold;
     border-bottom: 1px solid #ffffff40;
     color: #fff;
-    text-align: left;
+    text-align: center;
     text-decoration: none;
     transition: color 0.3s linear;
 
+    :last-child {
+      border-bottom: none;
+    }
     &:hover {
       color: #a8b2b7;
     }

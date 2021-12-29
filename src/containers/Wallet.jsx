@@ -28,14 +28,14 @@ const Wallet = () => {
   return (
     <Container>
       <FlexBox alignItems="center" justify="space-between">
+        <div></div>
+        <Text color="primary" size="xl" as="h1" margin="15px">
+          Wallet
+        </Text>
         <div ref={node}>
           <Hamburger open={open} setOpen={setOpen} />
           <Ham open={open} setOpen={setOpen} />
         </div>
-        <Text color="primary" size="xl" as="h1" margin="15px">
-          Wallet
-        </Text>
-        <div></div>
       </FlexBox>
       <Space size="lg" />
       <FlexBox alignItems="center">
