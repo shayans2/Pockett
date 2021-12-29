@@ -9,6 +9,7 @@ export const themeConfig = {
     darkBlue: '#264653',
     primaryBG: '#14242a',
     lightPrimary: '#ED937C',
+    darkestBlue: '#0c1215',
   },
 
   fontSize: {
