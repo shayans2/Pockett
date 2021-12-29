@@ -2,9 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useForm } from '@hooks/useForm';
-import { ChevronLeft } from '@components/Icons/ChevronLeft';
 
-import { Button, Input, Text, Space, FlexBox } from '@theme';
+import { Button, Input, Text, Space, FlexBox, ChevronLeft } from '@theme';
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.primaryBG};

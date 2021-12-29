@@ -2,8 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { useToast } from '@contexts/Toast';
 
-import { FlexBox, Text } from '@theme';
-import { CircleError } from '@components/Icons/CircleError';
+import { FlexBox, Text, CircleError } from '@theme';
 
 const ToastContainer = styled(FlexBox)`
   position: absolute;

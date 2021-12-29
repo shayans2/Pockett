@@ -7,8 +7,7 @@ import { useForm } from '@hooks/useForm';
 import { useToast } from '@contexts/Toast';
 import { Toast } from '@components/common/Toast';
 
-import { ChevronLeft } from '@components/Icons/ChevronLeft';
-import { Button, Input, Text, Space, FlexBox } from '@theme';
+import { Button, Input, Text, Space, FlexBox, ChevronLeft } from '@theme';
 import { Request, authService } from '@api';
 
 const Container = styled.div`

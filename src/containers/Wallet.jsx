@@ -3,10 +3,7 @@ import styled from 'styled-components';
 import { useModal } from '@hooks/useModal';
 import TransactionsItem from '@components/TransactionsItem';
 
-import { Add } from '@components/Icons/Add';
-import { Humburger } from '@components/Icons/Humburger';
-
-import { Text, Space, FlexBox, Modal } from '@theme';
+import { Text, Space, FlexBox, Modal, Add, Hamburger } from '@theme';
 
 const Container = styled.div`
   background-color: #14242a;
@@ -29,7 +26,7 @@ const Wallet = () => {
         <Text color="primary" size="xl" as="h1" margin="15px">
           Wallet
         </Text>
-        <Humburger />
+        <Hamburger />
       </FlexBox>
       <Space size="lg" />
       <FlexBox alignItems="center">
