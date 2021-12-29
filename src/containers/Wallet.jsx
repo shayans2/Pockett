@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { useModal } from '@hooks/useModal';
+import TransactionsItem from '@components/TransactionsItem';
+
 import { Add } from '@components/Icons/Add';
 import { Humburger } from '@components/Icons/Humburger';
-import BottomSheet from '@components/common/BottomSheet';
-import TransactionsItem from '@components/TransactionsItem';
-import { Text, Space, FlexBox } from '@theme';
+
+import { Text, Space, FlexBox, Modal } from '@theme';
 
 const Container = styled.div`
   background-color: #14242a;
@@ -13,27 +15,16 @@ const Container = styled.div`
   overflow: scroll;
 `;
 
-let Component;
-
 const Wallet = () => {
-  const [sheet, setSheet] = useState(false);
-
-  const openDialog = (name) => {
-    Component = React.lazy(() => import(`../components/${name}`));
-    console.log('hey', Component);
-    setSheet(true);
-  };
-
-  const closeButtomSheet = () => {
-    setSheet(false);
-  };
+  const testModal = useModal('test');
+  const test2Modal = useModal('test2');
 
   return (
     <Container>
       <FlexBox alignItems="center" justify="space-between">
         <Add />
         <Text
-          onClick={() => openDialog('Hum')}
+          onClick={() => testModal.openModal()}
           color="primary"
           size="xl"
           as="h1"
@@ -43,7 +34,7 @@ const Wallet = () => {
         </Text>
         <Humburger />
       </FlexBox>
-
+      <div onClick={() => test2Modal.openModal()}>Second Modal</div>
       <Space size="lg" />
       <FlexBox alignItems="center">
         <Text color="lightPrimary" font-weight="bold">
@@ -55,19 +46,14 @@ const Wallet = () => {
       </FlexBox>
       <Space size="lg" />
       <TransactionsItem />
-      {sheet ? (
-        <BottomSheet onClose={() => closeButtomSheet(false)}>
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <Component
-              onClose={async () => {
-                closeButtomSheet();
-              }}
-            />
-          </React.Suspense>
-        </BottomSheet>
-      ) : (
-        <></>
-      )}
+
+      <Modal onClose={() => test2Modal.closeModal()} isOpen={test2Modal.isOpen}>
+        <div style={{ padding: ' 50px' }}>TEST 2</div>
+      </Modal>
+
+      <Modal onClose={() => testModal.closeModal()} isOpen={testModal.isOpen}>
+        <div>TEST</div>
+      </Modal>
     </Container>
   );
 };

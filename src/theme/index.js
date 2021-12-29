@@ -7,6 +7,7 @@ export { FlexBox } from './components/FlexBox';
 export { Button } from './components/Button';
 export { Input } from './components/Input';
 export { Space } from './components/Space';
+export { Modal } from './components/Modal';
 
 // Animations
 export { bounceInDown } from './animations/bounceInDown';
