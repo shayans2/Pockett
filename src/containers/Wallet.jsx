@@ -15,29 +15,22 @@ const Container = styled.div`
   overflow: scroll;
 `;
 
-const Wallet = () => {
-  const TEST_MODAL_NAME = 'TEST_MODAL';
-  const TEST2_MODAL_NAME = 'TEST2_MODAL';
+const AddAmount = React.lazy(() => import('@components/Add'));
 
-  const testModal = useModal(TEST_MODAL_NAME);
-  const test2Modal = useModal(TEST2_MODAL_NAME);
+const Wallet = () => {
+  const AddModal = useModal(AddAmount);
 
   return (
     <Container>
       <FlexBox alignItems="center" justify="space-between">
-        <Add />
-        <Text
-          onClick={testModal.open}
-          color="primary"
-          size="xl"
-          as="h1"
-          margin="15px"
-        >
+        <div onClick={AddModal.open}>
+          <Add onClick={AddModal.open} />
+        </div>
+        <Text color="primary" size="xl" as="h1" margin="15px">
           Wallet
         </Text>
         <Humburger />
       </FlexBox>
-      <div onClick={test2Modal.open}>Second Modal</div>
       <Space size="lg" />
       <FlexBox alignItems="center">
         <Text color="lightPrimary" font-weight="bold">
@@ -50,12 +43,10 @@ const Wallet = () => {
       <Space size="lg" />
       <TransactionsItem />
 
-      <Modal onClose={test2Modal.close} isOpen={test2Modal.isOpen}>
-        <div style={{ padding: ' 50px' }}>TEST 2</div>
-      </Modal>
-
-      <Modal onClose={testModal.close} isOpen={testModal.isOpen}>
-        <div>TEST</div>
+      <Modal onClose={AddModal.close} isOpen={AddModal.isOpen}>
+        <div style={{ height: '68vh' }}>
+          <AddAmount />
+        </div>
       </Modal>
     </Container>
   );
