@@ -14,6 +14,7 @@ export { Add } from './icons/Add';
 export { ChevronLeft } from './icons/ChevronLeft';
 export { CircleError } from './icons/CircleError';
 export { HambugerIcon } from './icons/Hamburger';
+export { CloseIcon } from './icons/Close';
 
 // Animations
 export { bounceInDown } from './animations/bounceInDown';

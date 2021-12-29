@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { CloseIcon } from '@theme';
 const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
@@ -42,7 +43,10 @@ const StyledMenu = styled.nav`
 export const HamburgerMenu = ({ isOpen, setIsOpen }) => {
   return (
     <StyledMenu isOpen={isOpen}>
-      <div onClick={() => setIsOpen(!isOpen)}>Close</div>
+      <div onClick={() => setIsOpen(!isOpen)}>
+        <CloseIcon />
+      </div>
+
       <a href="/">Wallet Name</a>
       <a href="/">Setting</a>
       <a href="/">Contact Us</a>
