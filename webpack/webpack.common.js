@@ -38,6 +38,7 @@ module.exports = {
       '@theme': path.resolve(__dirname, '..', './src/theme/'),
       '@utils': path.resolve(__dirname, '..', './src/utils/'),
       '@assets': path.resolve(__dirname, '..', './src/assets/'),
+      '@constants': path.resolve(__dirname, '..', './src/constants/'),
     },
   },
   devServer: {

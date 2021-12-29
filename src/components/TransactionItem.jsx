@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Text, Space, FlexBox } from '@theme';
+import { constants } from '@constants';
 
 const ItemContainer = styled.div`
   height: 60px;
@@ -8,37 +9,34 @@ const ItemContainer = styled.div`
   padding: 8px 8px 0px 8px;
 `;
 
-const TransactionsItem = ({
-  type = 'earn',
-  des = 'Empty',
-  date = '12/28/2021, 6:37:17 PM',
+export const TransactionsItem = ({
+  type = constants.SPENT,
+  description = 'Here goes description',
+  // date = '12/28/2021, 6:37:17 PM',
   amount = '1$',
 }) => {
   return (
     <ItemContainer alignItems="center" justify="center">
       <FlexBox alignItems="center" justify="space-between">
-        <Text color="white" weight="bold">
+        <Text
+          color={type === constants.SPENT ? 'primary' : 'secondary'}
+          weight="bold"
+        >
           {type}
         </Text>
-        <Text color={type === 'earn' ? 'white' : 'primary'} as="span">
+        <Text color={type === constants.SPENT ? 'primary' : 'secondary'}>
           {amount}
         </Text>
       </FlexBox>
       <Space size="md" />
-      <FlexBox alignItems="center" justify="space-between">
-        <Text
-          color={type === 'earn' ? 'white' : 'primary'}
-          weight="light"
-          as="span"
-        >
-          {date}
-        </Text>
+      <FlexBox alignItems="center" justify="flex-start">
         <Text color="white" weight="light">
-          {des}
+          {description}
         </Text>
+        {/* <Text color="white" weight="light">
+          {date}
+        </Text> */}
       </FlexBox>
     </ItemContainer>
   );
 };
-
-export default TransactionsItem;

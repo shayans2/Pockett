@@ -1,49 +1,75 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useModal } from '@hooks/useModal';
-import TransactionsItem from '@components/TransactionsItem';
 
-import { Text, Space, FlexBox, Modal, Add, Hamburger } from '@theme';
+import { useModal } from '@hooks/useModal';
+import { TransactionsItem } from '@components/TransactionItem';
+import { Header } from '@components/common/Header';
+const AddTransaction = React.lazy(() => import('@components/AddTransaction'));
+
+import { Text, Space, FlexBox, Modal } from '@theme';
+import { constants } from '@constants';
 
 const Container = styled.div`
-  background-color: #14242a;
+  background-color: ${({ theme }) => theme.colors.primaryBG};
   height: 100%;
   padding: 0px 16px;
   overflow: scroll;
 `;
 
-const AddAmount = React.lazy(() => import('@components/Add'));
+const TransactionItemsContainer = styled.div`
+  height: calc(100% - 180px);
+  overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 const Wallet = () => {
-  const AddModal = useModal(AddAmount);
+  const addTransactionModal = useModal('add-transaction-modal');
+  const selectWalletModal = useModal('add-transaction-modal2');
 
   return (
     <Container>
-      <FlexBox alignItems="center" justify="space-between">
-        <div onClick={AddModal.open}>
-          <Add onClick={AddModal.open} />
-        </div>
-        <Text color="primary" size="xl" as="h1" margin="15px">
-          Wallet
-        </Text>
-        <Hamburger />
-      </FlexBox>
       <Space size="lg" />
+
+      <Header action={selectWalletModal.open}>Wallet</Header>
+
+      <Space size="32px" />
+
       <FlexBox alignItems="center">
-        <Text color="lightPrimary" font-weight="bold">
+        <Text color="white" weight="bold" size="body">
           Transactions
         </Text>
-        <Text color="lightPrimary" font-weight="light" as="span">
-          ($):
-        </Text>
       </FlexBox>
-      <Space size="lg" />
-      <TransactionsItem />
+      <Space size="md" />
+      <TransactionItemsContainer>
+        <TransactionsItem />
+        <TransactionsItem type={constants.EARNED} />
+        <TransactionsItem />
+        <TransactionsItem />
+        <TransactionsItem type={constants.EARNED} />
+        <TransactionsItem />
+        <TransactionsItem />
+        <TransactionsItem type={constants.EARNED} />
+      </TransactionItemsContainer>
 
-      <Modal onClose={AddModal.close} isOpen={AddModal.isOpen}>
-        <div style={{ height: '68vh' }}>
-          <AddAmount />
+      <Modal
+        onClose={selectWalletModal.close}
+        isOpen={selectWalletModal.isOpen}
+      >
+        <div style={{ padding: '100px 20px' }}>
+          Here goes some cool wallet selection...
         </div>
+      </Modal>
+
+      <Modal
+        onClose={addTransactionModal.close}
+        isOpen={addTransactionModal.isOpen}
+        minHeight="68px"
+      >
+        <React.Suspense fallback="Loading">
+          <AddTransaction modal={addTransactionModal} />
+        </React.Suspense>
       </Modal>
     </Container>
   );

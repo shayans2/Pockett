@@ -22,14 +22,15 @@ const ModalContainer = styled.div`
   border-radius: 12px 12px 0 0;
   background-color: ${({ theme }) => theme.colors.white};
   max-height: ${({ isOpen }) => (isOpen ? '100vh' : '0px')};
-  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
-  transition: all 0.4s ease;
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : '0px')};
+  /* visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')}; */
+  transition: all 0.5s ease;
   box-shadow: ${({ theme }) => theme.shadow};
   overflow: hidden;
-  z-index: 5;
+  z-index: ${({ minHeight }) => (minHeight ? 5 : 6)};
 `;
 
-export const Modal = ({ onClose, children, isOpen }) => {
+export const Modal = ({ onClose, isOpen, minHeight, children }) => {
   React.useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : null;
     return () => {
@@ -46,7 +47,9 @@ export const Modal = ({ onClose, children, isOpen }) => {
   return (
     <>
       <Backdrop isOpen={isOpen} onClick={(e) => close(e)} />
-      <ModalContainer isOpen={isOpen}>{children}</ModalContainer>
+      <ModalContainer isOpen={isOpen} minHeight={minHeight}>
+        {children}
+      </ModalContainer>
     </>
   );
 };

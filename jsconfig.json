@@ -9,7 +9,8 @@
       "@api": ["src/api"],
       "@theme": ["./src/theme"],
       "@utils/*": ["./src/utils/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@constants/*": ["./src/constants/*"]
     }
   },
   "exclude": ["node_modules"]
