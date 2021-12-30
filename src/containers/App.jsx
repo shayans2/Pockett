@@ -61,7 +61,7 @@ const App = () => {
 
   React.useEffect(() => {
     if (authService.getCurrentUser()) {
-      navigate('/private');
+      navigate('/wallet');
     }
   }, []);
 

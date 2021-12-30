@@ -21,7 +21,7 @@ export const Header = ({ children, hasHamburger, action = () => {} }) => {
       </Text>
       {hasHamburger ? (
         <>
-          <div isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+          <div onClick={() => setIsOpen(!isOpen)}>
             <HambugerIcon />
           </div>
 

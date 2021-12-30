@@ -1,55 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { authService } from '@api';
+import { CloseIcon, FlexBox } from '@theme';
 
-import { CloseIcon } from '@theme';
-const StyledMenu = styled.nav`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: ${({ theme }) => theme.colors.darkestBlue};
+const StyledMenu = styled(FlexBox)`
+  position: fixed;
   height: 100%;
   width: 100vw;
-  text-align: left;
-  position: fixed;
   top: 0;
   right: 0;
+  background-color: ${({ theme }) => theme.colors.darkestBlue};
   transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.3s ease-in-out;
   z-index: 10;
-  div {
-    margin: 16px 24px;
-    text-align: right;
-    color: #fff;
-  }
-  a {
-    margin: 0 24px;
-    padding: 28px 0;
-    font-weight: bold;
-    border-bottom: 1px solid #ffffff40;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    transition: color 0.3s linear;
+`;
 
-    :last-child {
-      border-bottom: none;
-    }
-    &:hover {
-      color: #a8b2b7;
-    }
+const CloseIconWrapper = styled.div`
+  margin: 16px 24px;
+  text-align: right;
+`;
+
+const MenuItem = styled.div`
+  margin: 0 24px;
+  padding: 28px 0;
+  font-weight: bold;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  color: ${({ theme }) => theme.colors.white};
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.3s linear;
+
+  :last-child {
+    border-bottom: none;
   }
 `;
 
 export const HamburgerMenu = ({ isOpen, setIsOpen }) => {
-  return (
-    <StyledMenu isOpen={isOpen}>
-      <div onClick={() => setIsOpen(!isOpen)}>
-        <CloseIcon />
-      </div>
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    authService.logout();
+    navigate('/');
+  };
 
-      <a href="/">Wallet Name</a>
-      <a href="/">Setting</a>
-      <a href="/">Contact Us</a>
+  return (
+    <StyledMenu justify="flex-start" direction="column" isOpen={isOpen}>
+      <CloseIconWrapper onClick={() => setIsOpen(!isOpen)}>
+        <CloseIcon />
+      </CloseIconWrapper>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      {/* <MenuItem>Wallet Name</MenuItem>
+      <MenuItem>Setting</MenuItem>
+      <MenuItem>Contact Us</MenuItem> */}
     </StyledMenu>
   );
 };

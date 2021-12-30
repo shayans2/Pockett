@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@hooks/useForm';
 
@@ -32,29 +32,40 @@ const BottomFixed = styled.div`
 `;
 
 const Login = () => {
-  // const query = useQuery('posts', () => Request('posts'));
+  const navigate = useNavigate();
+  const { isToastVisible, showToast } = useToast();
+
+  const login = useMutation((data) => {
+    return Request('login', {
+      data,
+    });
+  });
 
   React.useEffect(() => {
-    authService.logout();
-    // authService.loginWithJwt(
-    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
-    // );
-  }, []);
-  // console.log(authService.getCurrentUser());
+    if (authService.getCurrentUser()) {
+      navigate('/wallet');
+    }
+  });
 
-  const { isToastVisible, showToast } = useToast();
-  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (login.isError) showToast();
+
+    if (login.isSuccess) {
+      authService.loginWithJwt(login.data.data.token);
+      navigate('/wallet');
+    }
+  }, [login.isSuccess, login.isError]);
+
   const form = useForm(
     {
       initialValues: {
-        username: '',
+        id: '',
         password: '',
       },
     },
     {
       onSubmit: ({ values }) => {
-        console.log(values, 'Values!');
-        showToast();
+        login.mutate(values);
       },
     },
   );
@@ -79,7 +90,7 @@ const Login = () => {
       </TextContainer>
       <form onSubmit={form.handleSubmit}>
         <Input
-          name="username"
+          name="id"
           placeholder="Phone, email or username"
           type="text"
           onChange={form.handleChange}
@@ -108,7 +119,12 @@ const Login = () => {
             </Text>
           </Text>
           <Space size="lg" />
-          <Button large type="submit" text="Sign In" />
+          <Button
+            large
+            type="submit"
+            text="Sign In"
+            isLoading={login.isLoading}
+          />
         </BottomFixed>
       </form>
       {isToastVisible ? <Toast /> : null}

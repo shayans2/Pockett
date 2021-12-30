@@ -1,7 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
+
+import { useToast } from '@contexts/Toast';
 import { useForm } from '@hooks/useForm';
+import { Toast } from '@components/common/Toast';
+import { Request, authService } from '@api';
 
 import { Button, Input, Text, Space, FlexBox, ChevronLeft } from '@theme';
 
@@ -28,6 +33,23 @@ const BottomFixed = styled.div`
 
 const Register = () => {
   const navigate = useNavigate();
+  const { isToastVisible, showToast } = useToast();
+
+  const register = useMutation((data) => {
+    return Request('register', {
+      data,
+    });
+  });
+
+  React.useEffect(() => {
+    if (register.isSuccess) {
+      authService.loginWithJwt(register.data.data.token);
+      navigate('/wallet');
+    } else if (register.isError) {
+      showToast();
+    }
+  }, [register]);
+
   const form = useForm(
     {
       initialValues: {
@@ -38,10 +60,11 @@ const Register = () => {
     },
     {
       onSubmit: ({ values }) => {
-        console.log(values, 'Values!');
+        register.mutate(values);
       },
     },
   );
+
   return (
     <Container>
       <TextContainer>
@@ -92,9 +115,15 @@ const Register = () => {
 
         <BottomFixed>
           <Space size="lg" />
-          <Button type="submit" large text="Register" />
+          <Button
+            type="submit"
+            text="Register"
+            isLoading={register.isLoading}
+            large
+          />
         </BottomFixed>
       </form>
+      {isToastVisible ? <Toast /> : null}
     </Container>
   );
 };

@@ -5,7 +5,7 @@ import { useModal } from '@hooks/useModal';
 import { TransactionsItem } from '@components/TransactionItem';
 import { Header } from '@components/common/Header';
 const AddTransaction = React.lazy(() => import('@components/AddTransaction'));
-
+import { authService } from '@api';
 import { Text, Space, FlexBox, Modal } from '@theme';
 import { constants } from '@constants';
 
@@ -27,7 +27,7 @@ const TransactionItemsContainer = styled.div`
 const Wallet = () => {
   const addTransactionModal = useModal('add-transaction-modal');
   const selectWalletModal = useModal('add-transaction-modal2');
-
+  console.log(authService.getCurrentUser(), 'User');
   return (
     <Container>
       <Space size="lg" />

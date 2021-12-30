@@ -1,14 +1,18 @@
 export const endpoints = {
-  posts: {
-    url: '/posts',
-    method: 'GET',
-    params: {
-      test: 'test',
+  login: {
+    url: '/user/login',
+    method: 'POST',
+    options: {
+      transformRequest: (data) => JSON.stringify(data),
     },
+    headers: { 'Content-Type': 'application/json' },
   },
-
-  comments: {
-    url: '/comments',
-    method: 'GET',
+  register: {
+    url: '/user/register',
+    method: 'POST',
+    options: {
+      transformRequest: (data) => JSON.stringify(data),
+    },
+    headers: { 'Content-Type': 'application/json' },
   },
 };
