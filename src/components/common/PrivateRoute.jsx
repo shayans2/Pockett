@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { authService } from '@api';
 
 export const PrivateRoute = ({ children }) => {
-  const currentUser = authService.getCurrentUser();
+  const currentUser = authService.getUser();
 
   return currentUser ? children : <Navigate to="/login" />;
 };

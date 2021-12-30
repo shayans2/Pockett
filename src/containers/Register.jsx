@@ -42,10 +42,14 @@ const Register = () => {
   });
 
   React.useEffect(() => {
+    if (authService.getUser()) navigate('/wallet');
+  }, []);
+
+  React.useEffect(() => {
     if (register.isError) showToast();
 
     if (register.isSuccess) {
-      authService.loginWithJwt(register.data.data.token);
+      authService.setUser(register.data.data);
       navigate('/wallet');
     }
   }, [register.isSuccess, register.isError]);

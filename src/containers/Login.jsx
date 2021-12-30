@@ -42,16 +42,14 @@ const Login = () => {
   });
 
   React.useEffect(() => {
-    if (authService.getCurrentUser()) {
-      navigate('/wallet');
-    }
-  });
+    if (authService.getUser()) navigate('/wallet');
+  }, []);
 
   React.useEffect(() => {
     if (login.isError) showToast();
 
     if (login.isSuccess) {
-      authService.loginWithJwt(login.data.data.token);
+      authService.setUser(login.data.data);
       navigate('/wallet');
     }
   }, [login.isSuccess, login.isError]);

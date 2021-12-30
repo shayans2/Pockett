@@ -60,7 +60,7 @@ const App = () => {
   const [isVisible, setIsVisible] = React.useState(false);
 
   React.useEffect(() => {
-    if (authService.getCurrentUser()) {
+    if (authService.getUser()) {
       navigate('/wallet');
     }
   }, []);
