@@ -111,6 +111,7 @@ const Login = () => {
           type="text"
           onChange={form.handleChange}
           value={form.values.username}
+          autocapitalize="none"
           large
         />
         <Text color="error" margin="15px 5px" isVisible={form.errors.id}>

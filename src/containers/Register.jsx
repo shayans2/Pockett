@@ -140,6 +140,7 @@ const Register = () => {
           type="text"
           onChange={form.handleChange}
           value={form.values.username}
+          autocapitalize="none"
           large
         />
         <Space size="md" />
