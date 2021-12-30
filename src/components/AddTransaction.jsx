@@ -91,7 +91,6 @@ const AddTransaction = ({ modal, addTransaction }) => {
           type="text"
           onChange={form.handleChange}
           value={form.values.description}
-          required
           large
         />
 
