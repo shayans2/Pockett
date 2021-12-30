@@ -42,13 +42,13 @@ const Register = () => {
   });
 
   React.useEffect(() => {
+    if (register.isError) showToast();
+
     if (register.isSuccess) {
       authService.loginWithJwt(register.data.data.token);
       navigate('/wallet');
-    } else if (register.isError) {
-      showToast();
     }
-  }, [register]);
+  }, [register.isSuccess, register.isError]);
 
   const form = useForm(
     {
