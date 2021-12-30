@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useForm } from '@hooks/useForm';
-import { Text, Space, FlexBox, Button, Input } from '@theme';
+import { authService } from '@api';
+
+import { Text, Space, FlexBox, Button, Input, Spinner } from '@theme';
 
 import { constants } from '@constants';
 
@@ -22,8 +24,17 @@ const SpendButton = styled(Button)`
   width: 180px;
 `;
 
-const AddTransaction = ({ modal }) => {
+const AddTransaction = ({ modal, addTransaction }) => {
   const [type, setType] = React.useState(null);
+  const user = authService.getUser();
+  const defaultWalletId = user.data.defaultWallet;
+
+  React.useEffect(() => {
+    if (addTransaction.isSuccess) {
+      form.reset();
+      modal.close();
+    }
+  }, [addTransaction.isSuccess]);
 
   const form = useForm(
     {
@@ -34,7 +45,14 @@ const AddTransaction = ({ modal }) => {
     },
     {
       onSubmit: ({ values }) => {
-        console.log(values, type, 'Values!');
+        const data = {
+          ...values,
+          amount: +values.amount,
+          type: type === constants.SPENT ? 1 : 0,
+          wallet_id: defaultWalletId,
+        };
+
+        addTransaction.mutate(data);
       },
     },
   );
@@ -73,8 +91,20 @@ const AddTransaction = ({ modal }) => {
         <Space size="lg" />
 
         <FlexBox alignItems="center" justify="center" gap="12px">
-          <EarnButton text="Earned" onClick={() => setType(constants.EARNED)} />
-          <SpendButton text="Spent" onClick={() => setType(constants.SPENT)} />
+          {!addTransaction.isLoading ? (
+            <>
+              <EarnButton
+                text="Earned"
+                onClick={() => setType(constants.EARNED)}
+              />
+              <SpendButton
+                text="Spent"
+                onClick={() => setType(constants.SPENT)}
+              />
+            </>
+          ) : (
+            <Spinner />
+          )}
         </FlexBox>
       </form>
     </Container>

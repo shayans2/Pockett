@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useQuery, useMutation } from 'react-query';
+import { authService } from '@api';
+import { RouteLoading } from '@components/common/RouteLoading';
+import axios from 'axios';
 import { useModal } from '@hooks/useModal';
 import { TransactionsItem } from '@components/TransactionItem';
 import { Header } from '@components/common/Header';
+
 const AddTransaction = React.lazy(() => import('@components/AddTransaction'));
 
 import { Text, Space, FlexBox, Modal } from '@theme';
@@ -19,18 +24,34 @@ const Container = styled.div`
   }
 `;
 
-const TransactionItemsContainer = styled.div`
-  /* height: calc(100% - 180px);
-  overflow: scroll; */
-  /* ::-webkit-scrollbar {
-    display: none;
-  } */
-`;
-
 const Wallet = () => {
   const addTransactionModal = useModal('add-transaction-modal');
   const selectWalletModal = useModal('add-transaction-modal2');
+  const userJWT = authService.getJwt();
+  const user = authService.getUser();
+  const defaultWalletId = user.data.defaultWallet;
 
+  const transactions = useQuery('transactions', () =>
+    axios.get(`https://pockett.bamdad.dev/api/transaction/${defaultWalletId}`, {
+      headers: { Authorization: userJWT },
+    }),
+  );
+
+  const addTransaction = useMutation((data) => {
+    return axios.post('https://pockett.bamdad.dev/api/transaction/', data, {
+      headers: { Authorization: userJWT },
+    });
+  });
+
+  React.useEffect(() => {
+    if (addTransaction.isSuccess) transactions.refetch();
+  }, [addTransaction.isSuccess]);
+
+  // if (addTransaction.isSuccess) {
+  // console.log('SUCCESS');
+  // }
+  // if (transactions.isLoading || addTransaction.isLoading)
+  //   return <RouteLoading />;
   return (
     <Container>
       <Header action={selectWalletModal.open} hasHamburger>
@@ -43,18 +64,18 @@ const Wallet = () => {
         </Text>
       </FlexBox>
       <Space size="md" />
-      <TransactionItemsContainer>
-        <TransactionsItem />
-        <TransactionsItem type={constants.EARNED} />
-        <TransactionsItem />
-        <TransactionsItem />
-        <TransactionsItem type={constants.EARNED} />
-        <TransactionsItem />
-        <TransactionsItem />
-        <TransactionsItem type={constants.EARNED} />
-        <TransactionsItem />
-        <TransactionsItem type={constants.EARNED} />
-      </TransactionItemsContainer>
+
+      {transactions.isLoading ? (
+        <RouteLoading />
+      ) : (
+        transactions.data.data.map((transaction) => (
+          <TransactionsItem
+            key={transaction.id}
+            {...transaction}
+            type={transaction.type === 0 ? constants.EARNED : constants.SPENT}
+          />
+        ))
+      )}
 
       <Modal
         onClose={selectWalletModal.close}
@@ -70,9 +91,12 @@ const Wallet = () => {
         isOpen={addTransactionModal.isOpen}
         minHeight="80px"
       >
-        <React.Suspense fallback="Loading">
-          <AddTransaction modal={addTransactionModal} />
-        </React.Suspense>
+        {/* <React.Suspense fallback="Loading"> */}
+        <AddTransaction
+          modal={addTransactionModal}
+          addTransaction={addTransaction}
+        />
+        {/* </React.Suspense> */}
       </Modal>
     </Container>
   );
