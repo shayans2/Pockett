@@ -45,6 +45,10 @@ const Wallet = () => {
 
   React.useEffect(() => {
     if (addTransaction.isSuccess) transactions.refetch();
+
+    return () => {
+      transactions.remove();
+    };
   }, [addTransaction.isSuccess]);
 
   // if (addTransaction.isSuccess) {
