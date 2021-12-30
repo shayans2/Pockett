@@ -68,7 +68,7 @@ const Wallet = () => {
       <Modal
         onClose={addTransactionModal.close}
         isOpen={addTransactionModal.isOpen}
-        minHeight="74px"
+        minHeight="80px"
       >
         <React.Suspense fallback="Loading">
           <AddTransaction modal={addTransactionModal} />

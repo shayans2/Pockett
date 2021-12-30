@@ -42,7 +42,7 @@ export const Modal = ({ onClose, isOpen, minHeight, children }) => {
 
   return (
     <>
-      <Backdrop isOpen={isOpen} onClick={(e) => close(e)} />
+      <Backdrop isOpen={isOpen} onTouchEnd={(e) => close(e)} />
       <ModalContainer isOpen={isOpen} minHeight={minHeight}>
         {children}
       </ModalContainer>

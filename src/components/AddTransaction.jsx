@@ -8,7 +8,7 @@ import { constants } from '@constants';
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.darkestBlue};
-  height: 280px;
+  height: 300px;
   padding: 10px 16px 24px 16px;
 `;
 
@@ -40,12 +40,15 @@ const AddTransaction = ({ modal }) => {
   );
 
   return (
-    <Container onClick={!modal.isOpen ? modal.open : null}>
+    <Container
+      onTouchEnd={!modal.isOpen ? modal.open : null}
+      // onTouchMove={!modal.isOpen ? modal.open : null}
+    >
       <Space size="xl" />
       <Text color="white" weight="bold">
         Add Transaction
       </Text>
-      <Space size="26px" />
+      <Space size="32px" />
       <form onSubmit={form.handleSubmit}>
         <Input
           name="amount"
