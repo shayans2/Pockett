@@ -11,6 +11,7 @@ export const themeConfig = {
     darkestBlue: '#0c1215',
     primaryBG: '#14242a',
     lightPrimary: '#ED937C',
+    error: '#ee481f',
   },
 
   fontSize: {

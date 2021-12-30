@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Joi from 'joi';
+
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@hooks/useForm';
@@ -60,6 +62,22 @@ const Login = () => {
         id: '',
         password: '',
       },
+      validationSchema: {
+        id: Joi.string().trim().min(3).max(20).required().messages({
+          'string.base': `Email or username should be a type of string.`,
+          'string.empty': `You shouldn't leave this field empty.`,
+          'string.min': `Email or username too small!`,
+          'string.max': `Email or username too long!`,
+          'any.required': `Email or username is required.`,
+        }),
+        password: Joi.string().trim().min(3).required().messages({
+          'string.base': `Password should be a type of string.'`,
+          'string.empty': `You shouldn't leave this field empty.`,
+          'string.min': `Password too small!`,
+          'string.max': `Password too long!`,
+          'any.required': `Password is required.`,
+        }),
+      },
     },
     {
       onSubmit: ({ values }) => {
@@ -89,12 +107,15 @@ const Login = () => {
       <form onSubmit={form.handleSubmit}>
         <Input
           name="id"
-          placeholder="Phone, email or username"
+          placeholder="Email or username"
           type="text"
           onChange={form.handleChange}
           value={form.values.username}
           large
         />
+        <Text color="error" margin="15px 5px" isVisible={form.errors.id}>
+          {form.errors.id}
+        </Text>
         <Space size="md" />
         <Input
           name="password"
@@ -104,6 +125,10 @@ const Login = () => {
           value={form.values.password}
           large
         />
+
+        <Text color="error" margin="15px 5px" isVisible={form.errors.password}>
+          {form.errors.password}
+        </Text>
         <BottomFixed>
           <Text color="white" align="center">
             Don't have an account?{' '}
