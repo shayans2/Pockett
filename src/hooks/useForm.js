@@ -69,10 +69,15 @@ export const useForm = (formCustomValues = {}, formSubmitFunction = {}) => {
     submitForm();
   };
 
+  const reset = () => {
+    setFormValues({ values: initialValues });
+  };
+
   return {
     values: formValues.values,
     errors: errorStore,
     handleSubmit,
     handleChange,
+    reset,
   };
 };
