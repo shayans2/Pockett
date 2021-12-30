@@ -24,6 +24,10 @@ const SpendButton = styled(Button)`
   width: 180px;
 `;
 
+const SpinnerWrapper = styled(FlexBox)`
+  margin-top: 40px;
+`;
+
 const AddTransaction = ({ modal, addTransaction }) => {
   const [type, setType] = React.useState(null);
   const user = authService.getUser();
@@ -60,6 +64,7 @@ const AddTransaction = ({ modal, addTransaction }) => {
   return (
     <Container
       onTouchEnd={!modal.isOpen ? modal.open : null}
+      onClick={!modal.isOpen ? modal.open : null}
       // onTouchMove={!modal.isOpen ? modal.open : null}
     >
       <Space size="xl" />
@@ -76,6 +81,7 @@ const AddTransaction = ({ modal, addTransaction }) => {
           type="text"
           onChange={form.handleChange}
           value={form.values.amount}
+          required
           large
         />
         <Space size="md" />
@@ -85,6 +91,7 @@ const AddTransaction = ({ modal, addTransaction }) => {
           type="text"
           onChange={form.handleChange}
           value={form.values.description}
+          required
           large
         />
 
@@ -103,7 +110,9 @@ const AddTransaction = ({ modal, addTransaction }) => {
               />
             </>
           ) : (
-            <Spinner />
+            <SpinnerWrapper>
+              <Spinner />
+            </SpinnerWrapper>
           )}
         </FlexBox>
       </form>

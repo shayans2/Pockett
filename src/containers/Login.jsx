@@ -66,14 +66,14 @@ const Login = () => {
         id: Joi.string().trim().min(3).max(20).required().messages({
           'string.base': `Email or username should be a type of string.`,
           'string.empty': `You shouldn't leave this field empty.`,
-          'string.min': `Email or username too small!`,
+          'string.min': `Email or username too small.`,
           'string.max': `Email or username too long!`,
           'any.required': `Email or username is required.`,
         }),
         password: Joi.string().trim().min(3).required().messages({
           'string.base': `Password should be a type of string.'`,
           'string.empty': `You shouldn't leave this field empty.`,
-          'string.min': `Password too small!`,
+          'string.min': `Password too weak.`,
           'string.max': `Password too long!`,
           'any.required': `Password is required.`,
         }),
@@ -111,7 +111,7 @@ const Login = () => {
           type="text"
           onChange={form.handleChange}
           value={form.values.username}
-          autocapitalize="none"
+          autoCapitalize="none"
           large
         />
         <Text color="error" margin="15px 5px" isVisible={form.errors.id}>

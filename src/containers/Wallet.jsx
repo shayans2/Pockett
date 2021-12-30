@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { useQuery, useMutation } from 'react-query';
 import { authService } from '@api';
-import { RouteLoading } from '@components/common/RouteLoading';
+
 import axios from 'axios';
 import { useModal } from '@hooks/useModal';
 import { TransactionsItem } from '@components/TransactionItem';
@@ -11,7 +11,7 @@ import { Header } from '@components/common/Header';
 
 const AddTransaction = React.lazy(() => import('@components/AddTransaction'));
 
-import { Text, Space, FlexBox, Modal } from '@theme';
+import { Text, Space, FlexBox, Modal, Spinner } from '@theme';
 import { constants } from '@constants';
 
 const Container = styled.div`
@@ -22,6 +22,11 @@ const Container = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const SpinnerWrapper = styled(FlexBox)`
+  background-color: ${({ theme }) => theme.colors.primaryBG};
+  height: 200px;
 `;
 
 const Wallet = () => {
@@ -44,6 +49,11 @@ const Wallet = () => {
   });
 
   React.useEffect(() => {
+    if (transactions.data?.data.transactions.length === 0)
+      setTimeout(() => addTransactionModal.open(), 500);
+  }, [transactions.data?.data.transactions.length]);
+
+  React.useEffect(() => {
     if (addTransaction.isSuccess) transactions.refetch();
 
     return () => {
@@ -51,11 +61,6 @@ const Wallet = () => {
     };
   }, [addTransaction.isSuccess]);
 
-  // if (addTransaction.isSuccess) {
-  // console.log('SUCCESS');
-  // }
-  // if (transactions.isLoading || addTransaction.isLoading)
-  //   return <RouteLoading />;
   return (
     <Container>
       <Header action={selectWalletModal.open} hasHamburger>
@@ -70,15 +75,27 @@ const Wallet = () => {
       <Space size="md" />
 
       {transactions.isLoading ? (
-        <RouteLoading />
-      ) : (
-        transactions.data.data.map((transaction) => (
+        <SpinnerWrapper alignItems="center" justify="center">
+          <Spinner />
+        </SpinnerWrapper>
+      ) : transactions.data.data.transactions.length ? (
+        transactions.data.data.transactions.map((transaction) => (
           <TransactionsItem
             key={transaction.id}
             {...transaction}
             type={transaction.type === 0 ? constants.EARNED : constants.SPENT}
           />
         ))
+      ) : (
+        <Text
+          color="white"
+          weight="light"
+          size="body"
+          align="center"
+          margin="50px 0px"
+        >
+          No transactions yet
+        </Text>
       )}
 
       <Modal
@@ -95,12 +112,18 @@ const Wallet = () => {
         isOpen={addTransactionModal.isOpen}
         minHeight="80px"
       >
-        {/* <React.Suspense fallback="Loading"> */}
-        <AddTransaction
-          modal={addTransactionModal}
-          addTransaction={addTransaction}
-        />
-        {/* </React.Suspense> */}
+        <React.Suspense
+          fallback={
+            <SpinnerWrapper alignItems="center" justify="center">
+              .
+            </SpinnerWrapper>
+          }
+        >
+          <AddTransaction
+            modal={addTransactionModal}
+            addTransaction={addTransaction}
+          />
+        </React.Suspense>
       </Modal>
     </Container>
   );

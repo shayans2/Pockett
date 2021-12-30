@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '@api';
-import { CloseIcon, FlexBox } from '@theme';
+
+import { Text, FlexBox, CloseIcon } from '@theme';
 import { useNoScroll } from '@hooks/useNoScroll';
 
 const StyledMenu = styled(FlexBox)`
@@ -37,9 +38,18 @@ const MenuItem = styled.div`
   }
 `;
 
+const CopyRight = styled(Text)`
+  position: absolute;
+  bottom: 32px;
+  right: 0;
+  left: 0;
+`;
+
 export const HamburgerMenu = ({ isOpen, setIsOpen }) => {
   useNoScroll(isOpen);
   const navigate = useNavigate();
+  const user = authService.getUser();
+
   const handleLogout = () => {
     authService.logout();
     navigate('/');
@@ -50,10 +60,11 @@ export const HamburgerMenu = ({ isOpen, setIsOpen }) => {
       <CloseIconWrapper onClick={() => setIsOpen(!isOpen)}>
         <CloseIcon />
       </CloseIconWrapper>
+      <MenuItem>Gooday {user.data.username}? 👋</MenuItem>
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
-      {/* <MenuItem>Wallet Name</MenuItem>
-      <MenuItem>Setting</MenuItem>
-      <MenuItem>Contact Us</MenuItem> */}
+      <CopyRight color="white" align="center">
+        version 0.0.1
+      </CopyRight>
     </StyledMenu>
   );
 };
