@@ -28,6 +28,7 @@ module.exports = {
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true,
+      exclude: [/redirects/],
     }),
   ],
   output: {
