@@ -45,12 +45,14 @@ const AddTransaction = ({ modal }) => {
       <Text color="white" weight="bold">
         Add Transaction
       </Text>
-      <Space size="xl" />
+      <Space size="26px" />
       <form onSubmit={form.handleSubmit}>
         <Input
           name="amount"
           placeholder="Amount 💸"
-          type="number"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          type="text"
           onChange={form.handleChange}
           value={form.values.amount}
           large

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNoScroll } from '@hooks/useNoScroll';
 
 const Backdrop = styled.div`
   position: absolute;
@@ -31,12 +32,7 @@ const ModalContainer = styled.div`
 `;
 
 export const Modal = ({ onClose, isOpen, minHeight, children }) => {
-  React.useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : null;
-    return () => {
-      document.body.style.overflow = null;
-    };
-  }, [isOpen]);
+  useNoScroll(isOpen);
 
   const close = (e) => {
     if (e.currentTarget === e.target) {

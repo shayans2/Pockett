@@ -11,26 +11,28 @@ import { constants } from '@constants';
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.primaryBG};
-  height: 100%;
+  height: calc(100% - 80px);
   padding: 0px 16px;
-  overflow: scroll;
-`;
-
-const TransactionItemsContainer = styled.div`
-  height: calc(100% - 180px);
   overflow: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
 `;
 
+const TransactionItemsContainer = styled.div`
+  /* height: calc(100% - 180px);
+  overflow: scroll; */
+  /* ::-webkit-scrollbar {
+    display: none;
+  } */
+`;
+
 const Wallet = () => {
   const addTransactionModal = useModal('add-transaction-modal');
   const selectWalletModal = useModal('add-transaction-modal2');
-  console.log(authService.getCurrentUser(), 'User');
+
   return (
     <Container>
-      <Space size="lg" />
       <Header action={selectWalletModal.open} hasHamburger>
         Wallet
       </Header>
@@ -50,6 +52,8 @@ const Wallet = () => {
         <TransactionsItem />
         <TransactionsItem />
         <TransactionsItem type={constants.EARNED} />
+        <TransactionsItem />
+        <TransactionsItem type={constants.EARNED} />
       </TransactionItemsContainer>
 
       <Modal
@@ -64,7 +68,7 @@ const Wallet = () => {
       <Modal
         onClose={addTransactionModal.close}
         isOpen={addTransactionModal.isOpen}
-        minHeight="68px"
+        minHeight="74px"
       >
         <React.Suspense fallback="Loading">
           <AddTransaction modal={addTransactionModal} />

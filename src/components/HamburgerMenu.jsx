@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '@api';
 import { CloseIcon, FlexBox } from '@theme';
+import { useNoScroll } from '@hooks/useNoScroll';
 
 const StyledMenu = styled(FlexBox)`
   position: fixed;
@@ -37,6 +38,7 @@ const MenuItem = styled.div`
 `;
 
 export const HamburgerMenu = ({ isOpen, setIsOpen }) => {
+  useNoScroll(isOpen);
   const navigate = useNavigate();
   const handleLogout = () => {
     authService.logout();
