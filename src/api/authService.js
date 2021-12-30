@@ -21,7 +21,7 @@ const getUser = () => {
     const user = window.localStorage.getItem('user-info');
     return {
       jwt: jwtDecode(jwt),
-      user,
+      data: JSON.parse(user),
     };
   } catch (ex) {
     return null;
