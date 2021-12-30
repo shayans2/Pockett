@@ -8,6 +8,7 @@ export { Button } from './components/Button';
 export { Input } from './components/Input';
 export { Space } from './components/Space';
 export { Modal } from './components/Modal';
+export { Spinner } from './components/Spinner';
 
 // Icons
 export { Add } from './icons/Add';
