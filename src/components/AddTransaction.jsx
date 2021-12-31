@@ -16,12 +16,10 @@ const Container = styled.div`
 
 const EarnButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.secondary};
-  width: 180px;
 `;
 
 const SpendButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.primary};
-  width: 180px;
 `;
 
 const SpinnerWrapper = styled(FlexBox)`
@@ -102,10 +100,12 @@ const AddTransaction = ({ modal, addTransaction }) => {
               <EarnButton
                 text="Earned"
                 onClick={() => setType(constants.EARNED)}
+                large
               />
               <SpendButton
                 text="Spent"
                 onClick={() => setType(constants.SPENT)}
+                large
               />
             </>
           ) : (
