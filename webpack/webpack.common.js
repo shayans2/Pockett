@@ -41,14 +41,4 @@ module.exports = {
       '@constants': path.resolve(__dirname, '..', './src/constants/'),
     },
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, '..', './public'),
-    },
-    historyApiFallback: true,
-    hot: true,
-    compress: true,
-    port: 9000,
-    allowedHosts: 'all',
-  },
 };

@@ -16,5 +16,15 @@ module.exports = {
   //     }
   //   }),
   // ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, '..', './public'),
+    },
+    historyApiFallback: true,
+    hot: true,
+    compress: true,
+    port: 9000,
+    allowedHosts: 'all',
+  },
   devtool: 'eval-source-map',
 };
