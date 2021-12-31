@@ -1,11 +1,9 @@
 # Pockett
 
-A simple wallet that helps you to keep track of your incomes.
+https://pockett.netlify.app/
 
 ## Technologies
 
 ```
 React, styled-components, react-query, axios
 ```
-
-### To be added ...
