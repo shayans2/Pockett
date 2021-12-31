@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Joi from 'joi';
+import { isAndroid } from 'react-device-detect';
 
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
@@ -24,13 +25,14 @@ const TextContainer = styled.div`
 `;
 
 const BottomFixed = styled.div`
-  position: absolute;
+  position: ${isAndroid ? 'relative' : 'absolute'};
   top: auto;
-  bottom: 0%;
-  height: auto;
-  padding: 0px 16px 24px;
-  left: 0;
   right: 0;
+  bottom: 0;
+  left: 0;
+  height: auto;
+  padding: ${isAndroid ? '0px 0px 50px 0px' : '0px 16px 24px'};
+  margin-top: ${isAndroid ? '30px' : 0};
 `;
 
 const Register = () => {
@@ -164,6 +166,17 @@ const Register = () => {
           {form.errors.password}
         </Text>
         <BottomFixed>
+          <Text color="white" align="center">
+            Already have an account?{' '}
+            <Text
+              color="white"
+              weight="bold"
+              onClick={() => navigate('/login')}
+              as="span"
+            >
+              Login
+            </Text>
+          </Text>
           <Space size="lg" />
           <Button
             type="submit"
