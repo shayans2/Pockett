@@ -50,7 +50,8 @@ const Register = () => {
   }, []);
 
   React.useEffect(() => {
-    if (register.isError) showToast();
+    if (register.isError)
+      showToast(register.error?.response?.data?.message ?? null);
 
     if (register.isSuccess) {
       authService.setUser(register.data.data);

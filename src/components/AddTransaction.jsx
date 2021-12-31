@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { useToast } from '@contexts/Toast';
 import { useForm } from '@hooks/useForm';
 import { authService } from '@api';
 
@@ -30,13 +31,16 @@ const AddTransaction = ({ modal, addTransaction }) => {
   const [type, setType] = React.useState(null);
   const user = authService.getUser();
   const defaultWalletId = user.data.defaultWallet;
+  const { isToastVisible, showToast } = useToast();
 
   React.useEffect(() => {
+    if (addTransaction.isError) showToast();
+
     if (addTransaction.isSuccess) {
       form.reset();
       modal.close();
     }
-  }, [addTransaction.isSuccess]);
+  }, [addTransaction.isSuccess, addTransaction.isError]);
 
   const form = useForm(
     {
@@ -115,6 +119,7 @@ const AddTransaction = ({ modal, addTransaction }) => {
           )}
         </FlexBox>
       </form>
+      {isToastVisible ? <Toast /> : null}
     </Container>
   );
 };

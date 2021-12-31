@@ -50,7 +50,7 @@ const Login = () => {
   }, []);
 
   React.useEffect(() => {
-    if (login.isError) showToast();
+    if (login.isError) showToast(login.error?.response?.data?.message ?? null);
 
     if (login.isSuccess) {
       authService.setUser(login.data.data);
