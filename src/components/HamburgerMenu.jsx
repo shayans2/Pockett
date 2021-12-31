@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '@api';
-
-import { Text, FlexBox, CloseIcon } from '@theme';
 import { useNoScroll } from '@hooks/useNoScroll';
+import { Text, FlexBox, CloseIcon } from '@theme';
+import { constants } from '@constants';
 
 const StyledMenu = styled(FlexBox)`
   position: fixed;
@@ -63,7 +63,7 @@ export const HamburgerMenu = ({ isOpen, setIsOpen }) => {
       <MenuItem>Gooday {user.data.username}? 👋</MenuItem>
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
       <CopyRight color="white" align="center">
-        version 0.0.1
+        version {constants.APP_VERSION}
       </CopyRight>
     </StyledMenu>
   );

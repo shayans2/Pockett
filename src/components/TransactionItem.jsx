@@ -25,7 +25,10 @@ export const TransactionsItem = ({
           {type}
         </Text>
         <Text color={type === constants.SPENT ? 'primary' : 'secondary'}>
-          {amount}
+          {amount.toLocaleString()}{' '}
+          <Text color="white" as="span">
+            {constants.IRT}
+          </Text>
         </Text>
       </FlexBox>
       <Space size="md" />

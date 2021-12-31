@@ -67,10 +67,18 @@ const Wallet = () => {
         Wallet
       </Header>
       <Space size="32px" />
-      <FlexBox alignItems="center">
+      <FlexBox alignItems="center" justify="space-between">
         <Text color="white" weight="bold" size="body">
           Transactions
         </Text>
+        {transactions.data?.data?.wallet.balance ? (
+          <Text color="white" weight="light" size="body">
+            Balance: {transactions.data.data.wallet.balance.toLocaleString()}{' '}
+            <Text color="white" as="span">
+              {constants.IRT}
+            </Text>
+          </Text>
+        ) : null}
       </FlexBox>
       <Space size="md" />
 
