@@ -63,18 +63,15 @@ const Login = () => {
         password: '',
       },
       validationSchema: {
-        id: Joi.string().trim().min(3).max(20).required().messages({
+        id: Joi.string().trim().min(3).required().messages({
           'string.base': `Email or username should be a type of string.`,
           'string.empty': `You shouldn't leave this field empty.`,
           'string.min': `Email or username too small.`,
-          'string.max': `Email or username too long!`,
           'any.required': `Email or username is required.`,
         }),
-        password: Joi.string().trim().min(3).required().messages({
+        password: Joi.string().trim().required().messages({
           'string.base': `Password should be a type of string.'`,
           'string.empty': `You shouldn't leave this field empty.`,
-          'string.min': `Password too weak.`,
-          'string.max': `Password too long!`,
           'any.required': `Password is required.`,
         }),
       },

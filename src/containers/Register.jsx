@@ -64,10 +64,10 @@ const Register = () => {
         password: '',
       },
       validationSchema: {
-        email: Joi.string().trim().min(3).max(20).required().messages({
+        email: Joi.string().email().trim().max(150).required().messages({
           'string.base': `Email should be a type of string.`,
           'string.empty': `You shouldn't leave this field empty.`,
-          'string.min': `Email too small.`,
+          'string.email': `Email is not valid.`,
           'string.max': `Email too long!`,
           'any.required': `Email is required.`,
         }),
