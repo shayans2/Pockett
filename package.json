@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "manage your money",
   "main": "index.js",
-  "private": true,
   "scripts": {
     "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
     "serve": "serve build",
@@ -12,7 +11,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,md,json}' --config ./.prettierrc",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "author": "Shayan Bemanian",
   "license": "ISC",
@@ -33,7 +32,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "html-webpack-plugin": "^5.5.0",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "prettier": "^2.5.1",
     "react-hot-loader": "^4.13.0",
     "serve": "^13.0.2",
