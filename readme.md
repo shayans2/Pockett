@@ -2,6 +2,32 @@
 
 A simple wallet that helps you to keep track of your income.
 
+## 🚀 Fire it up!
+
+After cloning the project run the commands bellow:
+
+```
+yarn
+```
+
+Start the dev server with:
+
+```
+npm start
+```
+
+To run the production build, first do:
+
+```
+npm run build
+```
+
+And serve it with:
+
+```
+npm run serve
+```
+
 ## Project structures
 
 The heart of our UI lays down in the "theme" folder which is kind of a simple design system (no Storybook yet).
