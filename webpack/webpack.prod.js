@@ -3,10 +3,12 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  devtool: 'source-map',
+  devtool: false,
   plugins: [
     new CleanWebpackPlugin(),
     new Dotenv({
@@ -26,9 +28,15 @@ module.exports = {
     new WorkboxPlugin.GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
+      cleanupOutdatedCaches: true,
       clientsClaim: true,
       skipWaiting: true,
       exclude: [/redirects/],
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      minRatio: 0.8,
     }),
   ],
   output: {
@@ -37,6 +45,20 @@ module.exports = {
     clean: true,
   },
   optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          warnings: false,
+          parse: {},
+          mangle: true,
+          output: {
+            comments: false,
+            ascii_only: true,
+          },
+        },
+      }),
+    ],
     splitChunks: {
       cacheGroups: {
         commons: {

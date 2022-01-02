@@ -11,9 +11,9 @@ const Container = styled(FlexBox)`
 export const RouteLoading = () => {
   return (
     <Container justify="center" alignItems="center">
-      <Text color="white" size="4xl" as="h2">
+      {/* <Text color="white" size="4xl" as="h2">
         Loading...
-      </Text>
+      </Text> */}
     </Container>
   );
 };
