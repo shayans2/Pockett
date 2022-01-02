@@ -10,7 +10,7 @@
     "build:analyze": "npm run build -- --env addon=bundleanalyze",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,md,json}' --config ./.prettierrc",
+    "format": "pretty-quick --staged",
     "prepare": "husky install"
   },
   "author": "Shayan Bemanian",
@@ -34,6 +34,7 @@
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.0",
     "prettier": "^2.5.1",
+    "pretty-quick": "^3.1.3",
     "react-hot-loader": "^4.13.0",
     "serve": "^13.0.2",
     "style-loader": "^3.3.1",
