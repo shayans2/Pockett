@@ -3,9 +3,7 @@ const { merge } = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 
 const getAddons = (addonsArgs) => {
-  const addons = Array.isArray(addonsArgs)
-    ? addonsArgs
-    : [addonsArgs];
+  const addons = Array.isArray(addonsArgs) ? addonsArgs : [addonsArgs];
 
   return addons
     .filter(Boolean)
