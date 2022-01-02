@@ -1,7 +1,4 @@
 {
-  "settings": {
-    "version": "detect"
-  },
   "env": {
     "browser": true,
     "es2021": true
@@ -21,5 +18,10 @@
   "plugins": ["react"],
   "rules": {
     "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
