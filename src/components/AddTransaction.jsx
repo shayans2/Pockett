@@ -5,6 +5,7 @@ import { useToast } from '@contexts/Toast';
 import { useForm } from '@hooks/useForm';
 import { authService } from '@api';
 
+import { Toast } from './common/Toast';
 import { Text, Space, FlexBox, Button, Input, Spinner } from '@theme';
 
 import { constants } from '@constants';

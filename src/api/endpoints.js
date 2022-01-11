@@ -16,15 +16,15 @@ export const endpoints = {
     headers: { 'Content-Type': 'application/json' },
   },
   addTransaction: {
-    url: '/transaction',
+    url: '/transaction/',
     method: 'POST',
     options: {
       transformRequest: (data) => JSON.stringify(data),
     },
     headers: { 'Content-Type': 'application/json' },
   },
-  // getTransactions: {
-  //   url: '/transaction/',
-  //   method: 'GET',
-  // },
+  getTransactions: {
+    url: '/transaction/:id',
+    method: 'GET',
+  },
 };

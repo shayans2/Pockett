@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useQuery, useMutation } from 'react-query';
-import { authService } from '@api';
+import { Request, authService } from '@api';
 
-import axios from 'axios';
 import { useModal } from '@hooks/useModal';
 import { TransactionsItem } from '@components/TransactionItem';
 import { Header } from '@components/common/Header';
@@ -32,19 +31,16 @@ const SpinnerWrapper = styled(FlexBox)`
 const Wallet = () => {
   const addTransactionModal = useModal('add-transaction-modal');
   const selectWalletModal = useModal('add-transaction-modal2');
-  const userJWT = authService.getJwt();
   const user = authService.getUser();
   const defaultWalletId = user.data.defaultWallet;
 
   const transactions = useQuery('transactions', () =>
-    axios.get(`https://pockett.bamdad.dev/api/transaction/${defaultWalletId}`, {
-      headers: { Authorization: userJWT },
-    }),
+    Request('getTransactions', { urlParams: { id: defaultWalletId } }),
   );
 
   const addTransaction = useMutation((data) => {
-    return axios.post('https://pockett.bamdad.dev/api/transaction/', data, {
-      headers: { Authorization: userJWT },
+    return Request('addTransaction', {
+      data,
     });
   });
 
