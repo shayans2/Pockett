@@ -12,6 +12,11 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: ['ts-loader'],
+      },
+      {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
@@ -28,7 +33,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@containers': path.resolve(__dirname, '..', './src/containers/'),
       '@components': path.resolve(__dirname, '..', './src/components/'),
