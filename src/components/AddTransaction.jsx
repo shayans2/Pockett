@@ -69,11 +69,12 @@ const AddTransaction = ({ modal, addTransaction }) => {
       onClick={!modal.isOpen ? modal.open : null}
       // onTouchMove={!modal.isOpen ? modal.open : null}
     >
+      <Space size="lg" />
       <Space size="xl" />
       <Text color="white" weight="bold">
         Add Transaction
       </Text>
-      <Space size="32px" />
+      <Space size="2xl" />
       <form onSubmit={form.handleSubmit}>
         <Input
           name="amount"

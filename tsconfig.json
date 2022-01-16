@@ -11,7 +11,7 @@
       "@utils/*": ["./src/utils/*"],
       "@assets/*": ["./src/assets/*"],
       "@constants/*": ["./src/constants/*"],
-      "~types/*": ["./src/theme/ty"]
+      "~types/*": ["./src/types/*"]
     },
     "outDir": "dist",
     "declaration": true,

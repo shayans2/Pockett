@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const CircleError = (props) => (
-  <svg width="18" height="18px" viewBox="0 0 18 18" fill="#BD272D" {...props}>
+export const CircleError = ({ color = '#BD272D' }) => (
+  <svg width="18" height="18px" viewBox="0 0 18 18" fill={color}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

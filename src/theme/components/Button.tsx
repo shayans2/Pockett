@@ -1,8 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 import { Spinner } from './Spinner';
+import { ButtonProps } from '~types/theme';
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{ large?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,8 +18,15 @@ const StyledButton = styled.button`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
-export const Button = ({ text, isLoading, ...props }) => {
+export const Button: React.FC<ButtonProps> = ({
+  text,
+  isLoading,
+  large,
+  ...props
+}) => {
   return (
-    <StyledButton {...props}>{isLoading ? <Spinner /> : text}</StyledButton>
+    <StyledButton large {...props}>
+      {isLoading ? <Spinner /> : text}
+    </StyledButton>
   );
 };

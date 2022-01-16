@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Input = styled.input`
+interface InputProps {
+  large?: boolean;
+}
+
+export const Input = styled.input<InputProps>`
   padding: 20px 20px;
   border-radius: 18px;
   width: ${({ large }) => (large ? '100%' : 'auto')};

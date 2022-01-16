@@ -66,7 +66,7 @@ const Wallet = () => {
       <Header action={selectWalletModal.open} hasHamburger>
         Wallet
       </Header>
-      <Space size="32px" />
+      <Space size="2xl" />
       <FlexBox alignItems="center" justify="space-between">
         <Text color="white" weight="bold" size="body">
           Transactions

@@ -2,12 +2,7 @@ import React from 'react';
 
 export const CloseIcon = ({ color = '#fff', size = 24 }) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 20 20"
-    >
+    <svg width={size} height={size} viewBox="0 0 20 20">
       <g fill="none" fillRule="nonzero">
         <path fill="#D8D8D8" fillOpacity="0" d="M0 0h24v24H0z" />
         <path

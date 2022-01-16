@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { FlexProps } from '~types/theme';
 
-export const FlexBox = styled.div`
+export const FlexBox = styled.div<FlexProps>`
   display: ${({ inline }) => (inline ? 'inline-flex' : 'flex')};
   justify-content: ${({ justify }) => justify};
   align-content: ${({ alignContent }) => alignContent};
