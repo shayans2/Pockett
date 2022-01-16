@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "sourceMap": true,
+    "jsx": "react",
+    "target": "ES6",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "module": "CommonJS",
     "baseUrl": ".",
     "paths": {
       "@containers/*": ["./src/containers/*"],
@@ -12,24 +19,6 @@
       "@assets/*": ["./src/assets/*"],
       "@constants/*": ["./src/constants/*"],
       "~types/*": ["./src/types/*"]
-    },
-    "outDir": "dist",
-    "declaration": true,
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react",
-    "plugins": [{ "transform": "typescript-transform-paths" }]
-  },
-  "include": ["src"]
+    }
+  }
 }
