@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import Joi from 'joi';
+import { useNavigate } from 'react-router-dom';
 import { isAndroid } from 'react-device-detect';
 
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from 'react-query';
-
-import { useToast } from '@contexts/Toast';
 import { useForm } from '@hooks/useForm';
+import { useRegister } from '@hooks/requests/useRegister';
+import { useToast } from '@contexts/Toast';
+
 import { Toast } from '@components/common/Toast';
-import { Request, authService } from '@api';
 
 import { Button, Input, Text, Space, FlexBox, ChevronLeft } from '@theme';
+import { registerFormValidation } from 'src/constants/formValidations';
+import { authService } from '@api';
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.primaryBG};
@@ -37,27 +37,13 @@ const BottomFixed = styled.div`
 
 const Register = () => {
   const navigate = useNavigate();
-  const { isToastVisible, showToast } = useToast();
+  const { isToastVisible } = useToast();
 
-  const register = useMutation((data) => {
-    return Request('register', {
-      data,
-    });
-  });
+  const register = useRegister();
 
   React.useEffect(() => {
     if (authService.getUser()) navigate('/wallet');
   }, []);
-
-  React.useEffect(() => {
-    if (register.isError)
-      showToast(register.error?.response?.data?.message ?? null);
-
-    if (register.isSuccess) {
-      authService.setUser(register.data.data);
-      navigate('/wallet');
-    }
-  }, [register.isSuccess, register.isError]);
 
   const form = useForm(
     {
@@ -67,39 +53,9 @@ const Register = () => {
         password: '',
       },
       validationSchema: {
-        email: Joi.string()
-          .email({ tlds: { allow: false } })
-          .trim()
-          .max(150)
-          .required()
-          .messages({
-            'string.base': `Email should be a type of string.`,
-            'string.empty': `You shouldn't leave this field empty.`,
-            'string.email': `Email is not valid.`,
-            'string.max': `Email too long!`,
-            'any.required': `Email is required.`,
-          }),
-        username: Joi.string()
-          .alphanum()
-          .trim()
-          .min(3)
-          .max(20)
-          .required()
-          .messages({
-            'string.base': `Username should be a type of string.`,
-            'string.empty': `You shouldn't leave this field empty.`,
-            'string.alphanum': `Username should be alphanumerical.`,
-            'string.min': `Username too small.`,
-            'string.max': `Username too long!`,
-            'any.required': `Username is required.`,
-          }),
-        password: Joi.string().trim().min(3).required().messages({
-          'string.base': `Password should be a type of string.'`,
-          'string.empty': `You shouldn't leave this field empty.`,
-          'string.min': `Password too weak.`,
-          'string.max': `Password too long!`,
-          'any.required': `Password is required.`,
-        }),
+        email: registerFormValidation.email,
+        username: registerFormValidation.username,
+        password: registerFormValidation.password,
       },
     },
     {
@@ -139,7 +95,7 @@ const Register = () => {
           large
         />
         <Space size="md" />
-        <Text color="error" margin="15px 5px" isVisible={form.errors.password}>
+        <Text color="error" margin="15px 5px">
           {form.errors.email}
         </Text>
         <Input
@@ -152,7 +108,7 @@ const Register = () => {
           large
         />
         <Space size="md" />
-        <Text color="error" margin="15px 5px" isVisible={form.errors.password}>
+        <Text color="error" margin="15px 5px">
           {form.errors.username}
         </Text>
         <Input
@@ -163,7 +119,7 @@ const Register = () => {
           value={form.values.password}
           large
         />
-        <Text color="error" margin="15px 5px" isVisible={form.errors.password}>
+        <Text color="error" margin="15px 5px">
           {form.errors.password}
         </Text>
         <BottomFixed>

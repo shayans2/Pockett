@@ -25,7 +25,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <StyledButton large {...props}>
+    <StyledButton large={large} {...props}>
       {isLoading ? <Spinner /> : text}
     </StyledButton>
   );

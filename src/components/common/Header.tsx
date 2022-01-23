@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 
 import { HamburgerMenu } from '@components/HamburgerMenu';
@@ -16,8 +16,18 @@ const EmptySpace = styled.div`
   min-width: 15px;
 `;
 
-export const Header = ({ children, hasHamburger, action = () => {} }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+interface HeaderProps {
+  children: React.ReactElement;
+  hasHamburger: boolean;
+  action: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({
+  children,
+  hasHamburger,
+  action = () => {},
+}) => {
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   return (
     <>

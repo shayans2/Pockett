@@ -27,7 +27,7 @@ export const Toast = () => {
   return (
     <ToastContainer justify="flex-start" alignItems="center">
       <CircleError />
-      <Text size="regular" margin="0px 10px">
+      <Text size="regular" color="black" margin="0px 10px">
         {toastMessage}
       </Text>
     </ToastContainer>

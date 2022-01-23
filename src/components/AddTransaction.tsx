@@ -5,6 +5,7 @@ import { useToast } from '@contexts/Toast';
 import { useForm } from '@hooks/useForm';
 import { authService } from '@api';
 
+import { Toast } from '@components/common/Toast';
 import { Text, Space, FlexBox, Button, Input, Spinner } from '@theme';
 
 import { constants } from '@constants';
@@ -79,7 +80,7 @@ const AddTransaction = ({ modal, addTransaction }) => {
         <Input
           name="amount"
           placeholder="Amount 💸"
-          inputmode="numeric"
+          inputMode="numeric"
           pattern="[0-9]*"
           type="text"
           onChange={form.handleChange}

@@ -6,7 +6,7 @@ import { useNoScroll } from '@hooks/useNoScroll';
 import { Text, FlexBox, CloseIcon } from '@theme';
 import { constants } from '@constants';
 
-const StyledMenu = styled(FlexBox)`
+const StyledMenu = styled(FlexBox)<{ isOpen: boolean }>`
   position: fixed;
   height: 100%;
   width: 100vw;
@@ -27,7 +27,7 @@ const MenuItem = styled.div`
   margin: 0 24px;
   padding: 28px 0;
   font-weight: bold;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.separator};
   color: ${({ theme }) => theme.colors.white};
   text-align: center;
   text-decoration: none;

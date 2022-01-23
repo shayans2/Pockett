@@ -1,5 +1,10 @@
+import * as React from 'react';
+
+export type KeyValue<V> = { [key: string]: V };
+
 // Button
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   isLoading?: boolean;
   large?: boolean;
@@ -46,7 +51,7 @@ export interface FlexProps {
   direction?: Direction;
   wrap?: Wrap;
   flex?: string;
-  gap?: number;
+  gap?: string;
 }
 
 // Space

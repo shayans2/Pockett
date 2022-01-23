@@ -1,2 +1,2 @@
-export { Request } from './httpService';
+export { request } from './httpService';
 export { authService } from './authService';

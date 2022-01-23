@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useQuery, useMutation } from 'react-query';
-import { authService } from '@api';
+import { request, authService } from '@api';
 
-import axios from 'axios';
 import { useModal } from '@hooks/useModal';
 import { TransactionsItem } from '@components/TransactionItem';
 import { Header } from '@components/common/Header';
@@ -32,20 +31,15 @@ const SpinnerWrapper = styled(FlexBox)`
 const Wallet = () => {
   const addTransactionModal = useModal('add-transaction-modal');
   const selectWalletModal = useModal('add-transaction-modal2');
-  const userJWT = authService.getJwt();
   const user = authService.getUser();
   const defaultWalletId = user.data.defaultWallet;
 
   const transactions = useQuery('transactions', () =>
-    axios.get(`https://pockett.bamdad.dev/api/transaction/${defaultWalletId}`, {
-      headers: { Authorization: userJWT },
-    }),
+    request('getTransactions', { urlParams: { id: defaultWalletId } }),
   );
 
   const addTransaction = useMutation((data) => {
-    return axios.post('https://pockett.bamdad.dev/api/transaction/', data, {
-      headers: { Authorization: userJWT },
-    });
+    return request('addTransaction', { data });
   });
 
   React.useEffect(() => {
@@ -64,7 +58,7 @@ const Wallet = () => {
   return (
     <Container>
       <Header action={selectWalletModal.open} hasHamburger>
-        Wallet
+        <>Wallet</>
       </Header>
       <Space size="2xl" />
       <FlexBox alignItems="center" justify="space-between">
@@ -109,6 +103,7 @@ const Wallet = () => {
       <Modal
         onClose={selectWalletModal.close}
         isOpen={selectWalletModal.isOpen}
+        minHeight={0} // To be removed
       >
         <div style={{ padding: '100px 20px' }}>
           Here goes some cool wallet selection...

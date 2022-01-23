@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Text, FlexBox } from '@theme';
+import { FlexBox } from '@theme';
 
 const Container = styled(FlexBox)`
-  background-color: #14242a;
+  background-color: ${({ theme }) => theme.colors.primaryBG};
   height: 100%;
   padding: 0px 16px;
 `;

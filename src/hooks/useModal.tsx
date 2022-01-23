@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 
-export const useModal = (name) => {
+export const useModal = (name: string) => {
   const [isModalOpen, setIsModalOpen] = React.useState({
     [name]: false,
   });

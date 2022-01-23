@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '@api';
-
+import { DesktopView } from '@components/DesktopView';
 import {
   Text,
   FlexBox,
@@ -10,7 +10,6 @@ import {
   bounceInDown,
   growFromCenter,
   fadeIn,
-  CloseIcon,
 } from '@theme';
 
 const Container = styled(FlexBox)`
@@ -18,12 +17,6 @@ const Container = styled(FlexBox)`
   height: 100%;
   overflow: hidden;
   transform: translateZ(0); // To prevent overflow on growFromCenter animation
-`;
-
-const MobileViewContainer = styled(FlexBox)`
-  background-color: ${({ theme }) => theme.colors.primaryBG};
-  height: 100%;
-  align-self: flex-end;
 `;
 
 const MagicDot = styled.div`
@@ -41,14 +34,6 @@ const MagicDot = styled.div`
 const HomeButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.darkBlue};
   width: 160px;
-`;
-
-const CloseIconWrapper = styled.div`
-  padding: 50px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
 `;
 
 const Logo = styled(Text)`
@@ -73,7 +58,7 @@ const BottomFixed = styled(FlexBox)`
 const App = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = React.useState(false);
-  const [isMobileView, setIsMobileView] = React.useState(false);
+  const [isDesktopView, setIsDesktopView] = React.useState(false);
 
   React.useEffect(() => {
     if (authService.getUser()) {
@@ -89,24 +74,15 @@ const App = () => {
 
   React.useEffect(() => {
     if (window.innerWidth > 480) {
-      setIsMobileView(true);
+      setIsDesktopView(true);
     }
   }, [window.innerWidth]);
 
-  return isMobileView ? (
-    <MobileViewContainer
-      alignItems="center"
-      justify="center"
-      direction="column"
-    >
-      <CloseIconWrapper onClick={() => setIsMobileView(false)}>
-        <CloseIcon />
-      </CloseIconWrapper>
-      <Text color="white" weight="bold" size="larger" padding="50px 0">
-        Please use mobile view to have better experience...
-      </Text>
-    </MobileViewContainer>
-  ) : (
+  if (isDesktopView) {
+    return <DesktopView setIsDesktopView={setIsDesktopView} />;
+  }
+
+  return (
     <Container alignItems="center" justify="center">
       <MagicDot></MagicDot>
 

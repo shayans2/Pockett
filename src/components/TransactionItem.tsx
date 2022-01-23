@@ -5,7 +5,7 @@ import { constants } from '@constants';
 
 const ItemContainer = styled.div`
   height: 60px;
-  border-bottom: 1px solid #ffffff40;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.separator};
   padding: 8px 8px 0px 8px;
 `;
 
@@ -16,7 +16,7 @@ export const TransactionsItem = ({
   amount = '1$',
 }) => {
   return (
-    <ItemContainer alignItems="center" justify="center">
+    <ItemContainer>
       <FlexBox alignItems="center" justify="space-between">
         <Text
           color={type === constants.SPENT ? 'primary' : 'secondary'}

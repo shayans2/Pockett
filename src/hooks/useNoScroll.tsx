@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const useNoScroll = (condition) => {
+export const useNoScroll = (condition: boolean) => {
   React.useEffect(() => {
     if (condition) {
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
-      document.body.style.inset = 0;
+      document.body.style.inset = '0';
     }
 
     return () => {

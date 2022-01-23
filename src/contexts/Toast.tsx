@@ -1,12 +1,23 @@
-import React from 'react';
+import * as React from 'react';
 
-const ToastContext = React.createContext();
+interface ToastContextProps {
+  showToast: (message?: string) => void;
+  closeToast: () => void;
+  isToastVisible: boolean;
+  toastMessage: string;
+}
+
+const ToastContext = React.createContext<ToastContextProps | null>(null);
 
 export const useToast = () => {
   return React.useContext(ToastContext);
 };
 
-export const ToastProvider = ({ children }) => {
+interface ToastProviderProps {
+  children: React.ReactElement | React.ReactElement[];
+}
+
+export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   const [isToastVisible, setIsToastVisible] = React.useState(false);
   const [toastMessage, setToastMessage] = React.useState('');
 

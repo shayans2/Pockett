@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import Joi from 'joi';
+import { useNavigate } from 'react-router-dom';
 import { isAndroid } from 'react-device-detect';
 
-import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from '@hooks/useForm';
-
+import { useLogin } from '@hooks/requests/useLogin';
 import { useToast } from '@contexts/Toast';
+
 import { Toast } from '@components/common/Toast';
 
 import { Button, Input, Text, Space, FlexBox, ChevronLeft } from '@theme';
-import { Request, authService } from '@api';
+import { loginFormValidation } from '@constants';
+import { authService } from '@api';
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.primaryBG};
@@ -37,26 +37,12 @@ const BottomFixed = styled.div`
 
 const Login = () => {
   const navigate = useNavigate();
-  const { isToastVisible, showToast } = useToast();
-
-  const login = useMutation((data) => {
-    return Request('login', {
-      data,
-    });
-  });
+  const { isToastVisible } = useToast();
+  const login = useLogin();
 
   React.useEffect(() => {
     if (authService.getUser()) navigate('/wallet');
   }, []);
-
-  React.useEffect(() => {
-    if (login.isError) showToast(login.error?.response?.data?.message ?? null);
-
-    if (login.isSuccess) {
-      authService.setUser(login.data.data);
-      navigate('/wallet');
-    }
-  }, [login.isSuccess, login.isError]);
 
   const form = useForm(
     {
@@ -65,17 +51,8 @@ const Login = () => {
         password: '',
       },
       validationSchema: {
-        id: Joi.string().trim().min(3).required().messages({
-          'string.base': `Email or username should be a type of string.`,
-          'string.empty': `You shouldn't leave this field empty.`,
-          'string.min': `Email or username too small.`,
-          'any.required': `Email or username is required.`,
-        }),
-        password: Joi.string().trim().required().messages({
-          'string.base': `Password should be a type of string.'`,
-          'string.empty': `You shouldn't leave this field empty.`,
-          'any.required': `Password is required.`,
-        }),
+        id: loginFormValidation.id,
+        password: loginFormValidation.password,
       },
     },
     {
@@ -95,10 +72,10 @@ const Login = () => {
         >
           <ChevronLeft />
         </FlexBox>
-        <Text color="white" size="2xl" margin="15px 0px" as="h1">
+        <Text color="white" size="2xl" weight="bold" margin="15px 0px" as="h1">
           Let's sign you in.
         </Text>
-        <Text color="white" weight="regular" as="h2">
+        <Text color="white" size="larger" weight="regular" as="h2">
           Welcome back. <br />
           You've been missed!
         </Text>
@@ -113,7 +90,7 @@ const Login = () => {
           autoCapitalize="none"
           large
         />
-        <Text color="error" margin="15px 5px" isVisible={form.errors.id}>
+        <Text color="error" margin="15px 5px">
           {form.errors.id}
         </Text>
         <Space size="md" />
@@ -126,7 +103,7 @@ const Login = () => {
           large
         />
 
-        <Text color="error" margin="15px 5px" isVisible={form.errors.password}>
+        <Text color="error" margin="15px 5px">
           {form.errors.password}
         </Text>
         <BottomFixed>

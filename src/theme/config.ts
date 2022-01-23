@@ -12,6 +12,7 @@ export const themeConfig = {
     primaryBG: '#14242a',
     lightPrimary: '#ED937C',
     error: '#ee481f',
+    separator: '#ffffff40',
   },
 
   fontSize: {

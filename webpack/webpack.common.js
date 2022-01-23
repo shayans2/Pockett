@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, '..', './src/index.js'),
+  entry: path.resolve(__dirname, '..', './src/index.tsx'),
   stats: 'minimal',
   module: {
     rules: [
@@ -12,7 +12,7 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.(tsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: ['ts-loader'],
       },

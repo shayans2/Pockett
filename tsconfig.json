@@ -3,6 +3,7 @@
     "sourceMap": true,
     "jsx": "react",
     "target": "ES6",
+    "outDir": "./build",
     "allowJs": true,
     "esModuleInterop": true,
     "moduleResolution": "Node",
@@ -17,8 +18,9 @@
       "@theme": ["./src/theme"],
       "@utils/*": ["./src/utils/*"],
       "@assets/*": ["./src/assets/*"],
-      "@constants/*": ["./src/constants/*"],
+      "@constants": ["./src/constants"],
       "~types/*": ["./src/types/*"]
     }
-  }
+  },
+  "exclude": ["node_modules", "build"]
 }
