@@ -7,7 +7,7 @@
     "allowJs": true,
     "esModuleInterop": true,
     "moduleResolution": "Node",
-    "module": "CommonJS",
+    "module": "ESNext",
     "baseUrl": ".",
     "paths": {
       "@containers/*": ["./src/containers/*"],
