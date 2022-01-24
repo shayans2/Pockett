@@ -10,7 +10,7 @@ import { useToast } from '@contexts/Toast';
 import { Toast } from '@components/common/Toast';
 
 import { Button, Input, Text, Space, FlexBox, ChevronLeft } from '@theme';
-import { registerFormValidation } from 'src/constants/formValidations';
+import { registerFormValidation } from '@constants';
 import { authService } from '@api';
 
 const Container = styled.div`

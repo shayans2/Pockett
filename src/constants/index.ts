@@ -1,4 +1,4 @@
-export { loginFormValidation } from './formValidations';
+export { loginFormValidation, registerFormValidation } from './formValidations';
 
 export const constants = {
   EARNED: 'EARNED',
