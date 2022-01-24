@@ -75,13 +75,13 @@ const Register = () => {
         >
           <ChevronLeft />
         </FlexBox>
-        <Text color="white" size="2xl" margin="15px 0px" as="h1">
+        <Text color="white" size="2xl" weight="bold" margin="15px 0px" as="h1">
           Welcome To{' '}
-          <Text color="primary" as="span">
+          <Text color="primary" weight="bold" size="2xl" as="span">
             Pockett!
           </Text>
         </Text>
-        <Text color="white" weight="regular" as="h2">
+        <Text color="white" size="larger" weight="regular" as="h2">
           Let's start our journey.
         </Text>
       </TextContainer>
