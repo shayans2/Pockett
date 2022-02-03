@@ -67,7 +67,7 @@ Also, the service-worker generator stays here. We use WorkboxPlugin which is bui
 ## Technologies
 
 ```
-React, styled-components, react-query
+React, TS, styled-components, react-query
 ```
 
 ## Credits
