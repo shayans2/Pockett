@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "jsx": "react",
+    "target": "ES6",
+    "outDir": "./build",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "module": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@containers/*": ["./src/containers/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@api": ["src/api"],
+      "@theme": ["./src/theme"],
+      "@utils/*": ["./src/utils/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@constants": ["./src/constants"],
+      "~types/*": ["./src/types/*"]
+    }
+  },
+  "exclude": ["node_modules", "build"]
+}
